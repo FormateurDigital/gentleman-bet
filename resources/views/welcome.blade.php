@@ -16,25 +16,37 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
+
+            @if (!Auth::user())
                 <div class="top-right links">
                     <a href="{{ url('/login') }}">Login</a>
                     <a href="{{ url('/register') }}">Register</a>
                 </div>
+            @else
+                <div class="top-right links">
+                    <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> Logout </a>
+                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+                </div>
             @endif
-            <div class="alert alert-danger">POP</div>
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+            <div class="content">
+                <h1>
+                    <div class="title m-b-md">
+                        F1-Gentleman-bet
+                    </div>
+                </h1>
+
+                @if (Auth::user() && Auth::user()->role == 'admin')
+                    <div class="links">
+                        <a href="#">1</a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#">4</a>
+                    </div>
+                @endif
+                
             </div>
         </div>
     </body>
