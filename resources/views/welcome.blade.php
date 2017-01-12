@@ -41,8 +41,8 @@
                 @if (Auth::user() && Auth::user()->role == 'admin')
                     <div class="links">
                         <a href="{{action('SeasonsController@create')}}">Create Season</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
+                        <a href="{{action('StablesController@create')}}">Create Stable</a>
+                        <a href="{{action('PilotesController@create')}}">Create Pilote</a>
                         <a href="#">4</a>
                     </div>
                 @endif

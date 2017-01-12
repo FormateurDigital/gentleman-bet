@@ -20,7 +20,21 @@ Auth::routes();
 Route::group(['prefix' => 'seasons'], function () {
     Route::group(['middleware' => 'checkRole'], function () {
         Route::get('/create', 'SeasonsController@create');
-        Route::post('{id}/store', 'SeasonsController@store');
+        Route::post('/store', 'SeasonsController@store');
+    });
+});
+
+Route::group(['prefix' => 'pilotes'], function () {
+    Route::group(['middleware' => 'checkRole'], function () {
+        Route::get('/create', 'PilotesController@create');
+        Route::post('/store', 'PilotesController@store');
+    });
+});
+
+Route::group(['prefix' => 'stables'], function () {
+    Route::group(['middleware' => 'checkRole'], function () {
+        Route::get('/create', 'StablesController@create');
+        Route::post('/store', 'StablesController@store');
     });
 });
 
