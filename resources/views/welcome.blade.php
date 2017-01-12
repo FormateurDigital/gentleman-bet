@@ -40,13 +40,13 @@
 
                 @if (Auth::user() && Auth::user()->role == 'admin')
                     <div class="links">
-                        <a href="#">1</a>
+                        <a href="{{action('SeasonsController@create')}}">Create Season</a>
                         <a href="#">2</a>
                         <a href="#">3</a>
                         <a href="#">4</a>
                     </div>
                 @endif
-                
+
             </div>
         </div>
     </body>
