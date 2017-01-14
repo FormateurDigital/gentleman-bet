@@ -24,6 +24,13 @@ Route::group(['prefix' => 'seasons'], function () {
     });
 });
 
+Route::group(['prefix' => 'grandPrixs'], function () {
+    Route::group(['middleware' => 'checkRole'], function () {
+        Route::get('/create', 'GrandPrixsController@create');
+        Route::post('/store', 'GrandPrixsController@store');
+    });
+});
+
 Route::group(['prefix' => 'pilotes'], function () {
     Route::group(['middleware' => 'checkRole'], function () {
         Route::get('/create', 'PilotesController@create');

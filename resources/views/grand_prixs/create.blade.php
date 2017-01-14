@@ -5,10 +5,13 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Create Season</div>
+                    <div class="panel-heading">Create Patern for Grand Prix</div>
                     <div class="panel-body">
-                        {{ Form::open(['url' => action('SeasonsController@store'), 'method' => 'POST']) }}
+                        {{ Form::open(['url' => action('GrandPrixsController@store'), 'method' => 'POST', 'files' => true]) }}
                         {{ csrf_field() }}
+                        <h2>
+                            Grand Prix 1
+                        </h2>
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">Name</label>

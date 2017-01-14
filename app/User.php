@@ -39,4 +39,9 @@ class User extends Authenticatable implements StaplerableInterface {
 
         parent::__construct($attributes);
     }
+
+    public function results () {
+
+        return $this->hasMany('App\Result');
+    }
 }

@@ -6,22 +6,27 @@ use Illuminate\Database\Eloquent\Model;
 use Codesleeve\Stapler\ORM\StaplerableInterface;
 use Codesleeve\Stapler\ORM\EloquentTrait;
 
-class Pilote extends Model implements StaplerableInterface
-{
+class GrandPrix extends Model implements StaplerableInterface {
+
     use EloquentTrait;
-    //
+
     protected $fillable = [
-        'name', 'acronym', 'avatar'
+        'name', 'avatar', 'date', 'info1', 'info2', 'info3', 'info4'
     ];
 
-    public function stable () {
+    public function season () {
 
-        return $this->belongsTo('App\Stable');
+        return $this->belongsTo('App\Season');
     }
 
-    public function gp () {
+    public function pilotes () {
 
-        return $this->belongsToMany('App\GrandPrix');
+        return $this->belongsToMany('App\Pilote');
+    }
+
+    public function results () {
+
+        return $this->hasMany('App\Result');
     }
 
     public function __construct(array $attributes = array()) {

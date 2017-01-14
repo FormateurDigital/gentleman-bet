@@ -27,7 +27,7 @@ class PilotesController extends Controller
         ]);
 
         $stable = Stable::findOrFail(Input::get('stable'));
-        
+
         $pilote = new Pilote();
         $pilote->name = Input::get('name');
         $pilote->acronym = Input::get('acronym');
