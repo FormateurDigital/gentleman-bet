@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\GrandPrix;
 use App\Season;
 use Illuminate\Http\Request;
@@ -11,6 +12,12 @@ use Illuminate\Support\Facades\Input;
 class GrandPrixController extends Controller
 {
     //
+
+    public function show ($id) {
+
+        $gp = GrandPrix::findOrFail($id);
+        return view('grand_prixs/show')->withGp($gp);
+    }
 
     public function create () {
 

@@ -19,7 +19,7 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
-
+    {{Carbon\Carbon::setLocale('fr')}}
 </head>
 <body>
     <div id="app">
@@ -79,6 +79,7 @@
             </div>
         </nav>
         <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
+        <script type="text/javascript" src="{{asset('js/all.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/all.js')}}"></script>
         @yield('content')
     </div>

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Codesleeve\Stapler\ORM\StaplerableInterface;
 use Codesleeve\Stapler\ORM\EloquentTrait;
@@ -22,6 +23,26 @@ class GrandPrix extends Model implements StaplerableInterface {
     public function pilotes () {
 
         return $this->belongsToMany('App\Pilote');
+    }
+
+    public function flag () {
+
+        return '/public/' . $this->avatar->url();
+    }
+
+    public function betable () {
+
+        $now = Carbon::now(new \DateTimeZone('Europe/Paris'));
+        if ($now->gte($this->betTime()))
+            return false;
+        else
+            return true;
+    }
+
+    public function betTime () {
+
+        $date = new Carbon($this->date, 'Europe/Paris');
+        return $date->subHours(60);
     }
 
     public function results () {

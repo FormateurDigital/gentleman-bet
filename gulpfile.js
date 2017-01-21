@@ -15,7 +15,8 @@ elixir(mix => {
     mix.sass('app.scss')
        .webpack('app.js'),
     mix.scripts([
-        'jquery-datepicker.min.js'
+        'jquery-datepicker.min.js',
+        'bower/jquery.countdown/dist/jquery.countdown.js'
     ]);
 });
 

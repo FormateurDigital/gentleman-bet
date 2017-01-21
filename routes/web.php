@@ -29,6 +29,7 @@ Route::group(['prefix' => 'grandPrixs'], function () {
         Route::get('/create', 'GrandPrixController@create');
         Route::post('/store', 'GrandPrixController@store');
     });
+    Route::get('/show/{id}', 'GrandPrixController@show');
 });
 
 Route::group(['prefix' => 'gp_pilote'], function () {

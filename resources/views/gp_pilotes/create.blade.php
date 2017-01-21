@@ -15,7 +15,7 @@
 
                         <input type="hidden" id="season" name="season" value="{{$season}}">
 
-                        @for ($i = 1; $i < 9; $i++)
+                        @for ($i = 1; $i <= 10; $i++)
                             <div class="form-group{{ $errors->has('pilote'.$i) ? ' has-error' : '' }}">
                                 <label for="{{'pilote'.$i}}" class="col-md-4 control-label">{{'Pilote'.$i}}</label>
 
