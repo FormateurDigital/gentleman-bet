@@ -46,7 +46,12 @@
                         <a href="#">4</a>
                     </div>
                 @endif
-
+                <div class="links">
+                    <a href="{{action('SeasonsController@show', ["id" => $])}}">Calendrier</a>
+                    <a href="#">Pilotes</a>
+                    <a href="#">Classement</a>
+                    <a href="#">Reglement</a>
+                </div>
             </div>
         </div>
     </body>

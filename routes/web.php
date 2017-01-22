@@ -22,6 +22,7 @@ Route::group(['prefix' => 'seasons'], function () {
         Route::get('/create', 'SeasonsController@create');
         Route::post('/store', 'SeasonsController@store');
     });
+    Route::get('/show/{id}', 'SeasonsController@show');
 });
 
 Route::group(['prefix' => 'grandPrixs'], function () {

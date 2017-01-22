@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\GrandPrix;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
@@ -10,6 +11,14 @@ use App\Season;
 class SeasonsController extends Controller
 {
     //
+
+    public function show ($id) {
+
+        $season = Season::findOrFail($id);
+        $gps = $season->gp();
+        dd($gps);
+        return view('seasons/show')->withGps($gps);
+    }
 
     public function create () {
 

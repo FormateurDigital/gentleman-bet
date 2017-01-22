@@ -14,6 +14,8 @@ const elixir = require('laravel-elixir');
 elixir(mix => {
     mix.sass('app.scss')
        .webpack('app.js'),
+    mix.styles([
+    ]),
     mix.scripts([
         'jquery-datepicker.min.js',
         'bower/jquery.countdown/dist/jquery.countdown.js'
