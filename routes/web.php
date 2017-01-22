@@ -12,10 +12,16 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $today = Carbon\Carbon::now('Europe/Paris');
+    $gp = App\GrandPrix::where('date', '>', $today)->orderBy('date')->first();
+    return view('welcome')->withGp($gp);
 });
 
 Auth::routes();
+
+Route::get('/reglement', function () {
+    return view('reglement');
+});
 
 Route::group(['prefix' => 'seasons'], function () {
     Route::group(['middleware' => 'checkRole'], function () {

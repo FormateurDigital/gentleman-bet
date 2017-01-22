@@ -38,17 +38,21 @@
                     </div>
                 </h1>
 
+                @if(isset($gp))
+                    {{$gp->name}}
+                @else
+                    Aucun Grands Prix en cours
+                @endif
+
                 @if (Auth::user() && Auth::user()->role == 'admin')
                     <div class="links">
                         <a href="{{action('SeasonsController@create')}}">Create Season</a>
                         <a href="{{action('StablesController@create')}}">Create Stable</a>
                         <a href="{{action('PilotesController@create')}}">Create Pilote</a>
-                        <a href="#">4</a>
                     </div>
                 @endif
                 <div class="links">
-                    <a href="{{action('SeasonsController@show', ["id" => $])}}">Calendrier</a>
-                    <a href="#">Pilotes</a>
+                    <a href="{{action('SeasonsController@show', ['id' => $gp->season->id])}}">Calendrier</a>
                     <a href="#">Classement</a>
                     <a href="#">Reglement</a>
                 </div>

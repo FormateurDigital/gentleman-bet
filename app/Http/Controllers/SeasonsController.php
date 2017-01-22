@@ -15,8 +15,7 @@ class SeasonsController extends Controller
     public function show ($id) {
 
         $season = Season::findOrFail($id);
-        $gps = $season->gp();
-        dd($gps);
+        $gps = $season->gp;
         return view('seasons/show')->withGps($gps);
     }
 
