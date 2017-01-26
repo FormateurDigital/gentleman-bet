@@ -23,6 +23,6 @@ class StablesController extends Controller
 
         Stable::create(Input::all());
 
-        return view('welcome');
+        return redirect()->action("HomeController@home");
     }
 }

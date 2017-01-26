@@ -31,6 +31,8 @@ class Gp_PiloteController extends Controller
             'pilote6' => 'required',
             'pilote7' => 'required',
             'pilote8' => 'required',
+            'pilote9' => 'required',
+            'pilote10' => 'required',
         ]);
 
         $season = Season::findOrFail(Input::get('season'));
@@ -44,8 +46,10 @@ class Gp_PiloteController extends Controller
             $gp->pilotes()->attach(Input::get('pilote6'));
             $gp->pilotes()->attach(Input::get('pilote7'));
             $gp->pilotes()->attach(Input::get('pilote8'));
+            $gp->pilotes()->attach(Input::get('pilote9'));
+            $gp->pilotes()->attach(Input::get('pilote10'));
             $gp->save();
         }
-        return view('welcome');
+        return redirect()->action('HomeController@home');
     }
 }

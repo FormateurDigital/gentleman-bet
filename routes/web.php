@@ -11,11 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    $today = Carbon\Carbon::now('Europe/Paris');
-    $gp = App\GrandPrix::where('date', '>', $today)->orderBy('date')->first();
-    return view('welcome')->withGp($gp);
-});
+Route::get('/', 'HomeController@home');
 
 Auth::routes();
 

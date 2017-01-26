@@ -37,7 +37,6 @@
                         F1-Gentleman-bet
                     </div>
                 </h1>
-
                 @if(isset($gp))
                     {{$gp->name}}
                 @else
@@ -52,7 +51,9 @@
                     </div>
                 @endif
                 <div class="links">
-                    <a href="{{action('SeasonsController@show', ['id' => $gp->season->id])}}">Calendrier</a>
+                    @if (isset($gp))
+                        <a href="{{action('SeasonsController@show', ['id' => $gp->season->id])}}">Calendrier</a>
+                    @endif
                     <a href="#">Classement</a>
                     <a href="#">Reglement</a>
                 </div>

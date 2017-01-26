@@ -35,6 +35,6 @@ class PilotesController extends Controller
         $pilote->stable()->associate($stable);
         $pilote->save();
 
-        return view('welcome');
+        return redirect()->action('HomeController@home');
     }
 }
