@@ -53,8 +53,9 @@
                 <div class="links">
                     @if (isset($gp))
                         <a href="{{action('SeasonsController@show', ['id' => $gp->season->id])}}">Calendrier</a>
+                        <a href="{{action('SeasonsController@showResults', ['id' => $gp->season->id])}}">Classement</a>
                     @endif
-                    <a href="#">Classement</a>
+                    <a href="{{action('SeasonsController@showAll')}}">Historique</a>
                     <a href="#">Reglement</a>
                 </div>
             </div>

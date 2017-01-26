@@ -31,7 +31,7 @@
                     <input id="betTime" type="hidden" value="{{$gp->betTime()->format('Y/m/d h:m:s')}}">
                 </div>
                 @if (!$gp->betable())
-                    <a href="#">Pronos & Resultats</a>
+                    <a href="{{action('ResultsController@show', ['gp'=> $gp->id])}}">Pronos & Resultats</a>
                 @endif
                 <h1>Mes Pronos</h1>
                 {{ Form::open(['url' => action('ResultsController@bet', ['user' => \Auth::user()->id,'gp' => $gp->id]), 'method' => 'POST']) }}

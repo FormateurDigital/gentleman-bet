@@ -25,6 +25,8 @@ Route::group(['prefix' => 'seasons'], function () {
         Route::post('/store', 'SeasonsController@store');
     });
     Route::get('/show/{id}', 'SeasonsController@show');
+    Route::get('/show/{id}/results', 'SeasonsController@showResults');
+    Route::get('/show', 'SeasonsController@showAll');
 });
 
 Route::group(['prefix' => 'grandPrixs'], function () {
@@ -57,7 +59,8 @@ Route::group(['prefix' => 'stables'], function () {
 });
 
 Route::group(['prefix' => 'results'], function () {
-    Route::post('{gp}/results/{user}/', 'ResultsController@bet');
+    Route::post('{gp}/results/{user}', 'ResultsController@bet');
+    Route::get('{gp}/results', 'ResultsController@show');
 });
 
 Route::get('/home', 'HomeController@index');

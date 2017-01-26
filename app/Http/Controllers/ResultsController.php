@@ -42,4 +42,10 @@ class ResultsController extends Controller
 
         return redirect()->back()->withValidation('Pari pris en compte !');
     }
+
+    public function show ($gp_id) {
+        $gp = GrandPrix::findOrFail($gp_id);
+        $results = $gp->results;
+        return view('results/show')->withResults($results)->withGp($gp);
+    }
 }
