@@ -34,16 +34,16 @@
                     <a href="#">Pronos & Resultats</a>
                 @endif
                 <h1>Mes Pronos</h1>
-                {{ Form::open(['url' => action('GrandPrixController@store'), 'method' => 'POST']) }}
+                {{ Form::open(['url' => action('ResultsController@bet', ['user' => \Auth::user()->id,'gp' => $gp->id]), 'method' => 'POST']) }}
                 {{ csrf_field() }}
 
                 <div class="form-group{{ $errors->has('pole') ? ' has-error' : '' }}">
                     <label for="pole" class="col-md-4 control-label">Pole</label>
 
                     <div class="col-md-6">
-                        <select id="pole" type="text" class="form-control" name="pole" value="pole" required >
+                        <select id="pole" type="text" class="form-control" name="pole" required >
                             @forelse($gp->pilotes as $pilote)
-                                <option name="pole" value="pole">
+                                <option name="pole" value="{{$pilote->id}}">
                                     {{$pilote->acronym}}
                                 </option>
                             @empty
@@ -82,7 +82,7 @@
                 @endfor
                 @if ($gp->betable())
 
-                    <input id="type" type="hidden" value="result">
+                    <input name="type" type="hidden" value="bet">
 
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-4">
@@ -94,7 +94,7 @@
 
                 @elseif(\Auth::user()->role == 'admin')
 
-                    <input id="type" type="hidden" value="result">
+                    <input name="type" type="hidden" value="result">
 
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-4">
@@ -106,6 +106,16 @@
 
                 @endif
                 {{ Form::close() }}
+                @if(isset($result_errors))
+                    <div>
+                        {{$result_errors}}
+                    </div>
+                @endif
+                @if(isset($validation))
+                    <div>
+                        {{$validation}}
+                    </div>
+                @endif
             </div>
         </div>
     </div>

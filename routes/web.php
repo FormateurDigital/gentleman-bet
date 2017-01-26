@@ -56,6 +56,10 @@ Route::group(['prefix' => 'stables'], function () {
     });
 });
 
+Route::group(['prefix' => 'results'], function () {
+    Route::post('{gp}/results/{user}/', 'ResultsController@bet');
+});
+
 Route::get('/home', 'HomeController@index');
 Route::group(['prefix' => 'errors'], function () {
    Route::get('/unauthorised', function () {
