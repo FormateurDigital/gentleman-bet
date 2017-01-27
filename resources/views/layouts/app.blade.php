@@ -11,7 +11,8 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="css/app.css" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet">
+    <link rel="stylesheet" src="{{URL::asset('css/all.css')}}"></script>    
 
     <!-- Scripts -->
     <script>
@@ -19,7 +20,6 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
-    {{Carbon\Carbon::setLocale('fr')}}
 </head>
 <body>
     <div id="app">
@@ -37,7 +37,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        {{ config('app.name', 'F1 Gentleman bet') }}
                     </a>
                 </div>
 
@@ -47,8 +47,16 @@
                         &nbsp;
                     </ul>
 
+                    <ul class="nav navbar-nav navbar-left admin-nav">
+                        @if (Auth::user() && Auth::user()->role == 'admin')
+                            <li><a href="{{action('SeasonsController@create')}}">Create Season</a></li>      
+                            <li><a href="{{action('StablesController@create')}}">Create Stable</a></li>
+                            <li><a href="{{action('PilotesController@create')}}">Create Pilote</a></li>                       
+                        @endif
+                    </ul>
+
                     <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav navbar-right dropdown-container">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li><a href="{{ url('/login') }}">Login</a></li>

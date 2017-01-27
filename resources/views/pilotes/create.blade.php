@@ -6,7 +6,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Register</div>
-                <div class="panel-body">
+                <div class="panel-body form-horizontal">
                     {{ Form::open(['url' => action('PilotesController@store'), 'method' => 'POST', 'files' => true]) }}
                         {{ csrf_field() }}
 
@@ -42,7 +42,7 @@
                             <label for="stable" class="col-md-4 control-label">Acronym</label>
 
                             <div class="col-md-6">
-                                <select name="stable">
+                                <select class="form-control" name="stable">
                                     @forelse($stables as $stable)
                                         <option value="{{$stable->id}}">{{$stable->name}}</option>
                                     @empty
