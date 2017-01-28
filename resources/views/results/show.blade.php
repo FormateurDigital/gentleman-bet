@@ -6,7 +6,7 @@
             {{$gp->name}}
            <img src="{{'/public/' . $gp->avatar->url()}}">
             {{$gp->date}}
-            <table>
+            <table class="table">
                 <thead>
                 <tr>
                     <th>Rang</th>

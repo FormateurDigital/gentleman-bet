@@ -30,9 +30,9 @@
                                     @endif
                                     @if(isset($gp))
                                         <a class="blue" href="{{action('SeasonsController@show', ['id' => $gp->season->id])}}">Calendrier</a>
+                                        <a class="red" href="{{action('SeasonsController@showResults', ['id' => $gp->season->id])}}">Classement</a>
                                     @endif
                                         <!--<a class="red" href="#">Classement</a>-->
-                                        <a class="red" href="{{action('SeasonsController@showResults', ['id' => $gp->season->id])}}">Classement</a>
                                         <a href="{{action('SeasonsController@showAll')}}">Historique</a>
                                         <a class="green" href="#">Reglement</a>
                                     </div>

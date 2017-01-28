@@ -14,7 +14,7 @@
 
                         @for ($i = 1; $i <= 10; $i++)
                             <div class="form-group{{ $errors->has('pilote'.$i) ? ' has-error' : '' }} col-pilote">
-                                <label for="{{'pilote'.$i}}" class="col-md-3 control-label">{{'Pilote'.$i}}</label>
+                                <label for="{{'pilote'.$i}}" class="col-md-3 control-label">{{'Pilote '.$i}}</label>
 
                                 <div class="col-md-9">
                                     <select id="{{'pilote'.$i}}" type="text" class="form-control" name="{{'pilote'.$i}}" value="{{ old('pilote'.$i) }}" required >
