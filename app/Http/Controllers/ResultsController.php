@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\GrandPrix;
+use App\Points;
 use App\Result;
 use App\User;
 use Illuminate\Http\Request;
@@ -21,7 +22,10 @@ class ResultsController extends Controller
             $resultat = $gp->results()->where('type', 'result')->first();
             if ($resultat)
                 return redirect()->back()->withResultErrors('Vous avez deja annonce des resultats');
+            else
+                $result = new Result();
         }
+
         $user = User::findOrFail($user_id);
         $result->score = 0;
         $result->type = Input::get('type');
@@ -40,7 +44,27 @@ class ResultsController extends Controller
         $result->gp()->associate($gp);
         $result->save();
 
+        if (Input::get('type') === "result")
+            $this->_calculate_points($gp);
+
         return redirect()->back()->withValidation('Pari pris en compte !');
+    }
+
+    private function _proute ($result, $bet, $position) {
+        dd($result->$position);
+    }
+
+    private function _calculate_points($gp) {
+
+        $bets = $gp->results;
+        $result = $gp->results->where('type', 'result')->first();
+
+        foreach ($bets as $bet) {
+            $point = new Points();
+            $this->_proute($result, $bet, 'position1');
+        }
+
+        dd($result);
     }
 
     public function show ($gp_id) {

@@ -15,6 +15,11 @@ class Result extends Model {
         return $this->belongsTo('App\GrandPrix', 'grand_prix_id');
     }
 
+    public function point () {
+
+        return $this->hasOne('App\Points');
+    }
+
     public function user () {
 
         return $this->belongsTo('App\User');
