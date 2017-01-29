@@ -22,6 +22,7 @@ nav.navbar {
     overflow: hidden;
     position: relative;
     border-bottom: 5px #E25041 solid;
+    background-position: center center;
 }
 
 .welcome-banner img {
@@ -178,10 +179,18 @@ nav.navbar {
     margin-bottom: 15px;
 }
 
+.gp_h1 .little {
+    font-size: 26px;
+}
+
 .gp_h1 img {
     display: inline;
-    max-height: 36px;
-    padding-right: 15px;
+    max-height: 50px;
+    padding-right: 25px;
+}
+
+.gp_h2 {
+    text-align: center;
 }
 
 .list-circuits {

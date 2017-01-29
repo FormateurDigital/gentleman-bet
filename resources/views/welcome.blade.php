@@ -2,8 +2,8 @@
 
 @section('content')
     <body>
-            <div class="welcome-banner">
-                <img src="/img/welcome-banner.jpg" alt="">
+            <div class="welcome-banner" style='background-image: url("/img/welcome-banner.jpg")'>
+                <!--<img src="" alt="">-->
             </div>
             <div class="flex-center position-ref full-height">
                 <div class="content container">

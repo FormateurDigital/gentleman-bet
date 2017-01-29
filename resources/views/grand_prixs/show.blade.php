@@ -4,10 +4,10 @@
     <div class="container gp-show">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <h1 class="gp_h1"><img src="{{$gp->avatar->url()}}"> {{ $gp->name }} - {{ $gp->date }}</h1>
-                <div id="timer">
-                    <h2><input id="betTime" type="hidden" value="{{$gp->betTime()->format('Y/m/d h:m:s')}}"></h2>
-                </div>
+                <h1 class="gp_h1"><img src="{{$gp->avatar->url()}}"> {{ $gp->name }} <span class="little">- {{ $gp->date }}</span></h1>
+                <h2 id="timer" class="gp_h2">
+                    <input id="betTime" type="hidden" value="{{$gp->betTime()->format('Y/m/d h:m:s')}}">
+                </h2>
                 <hr>
                 <h3>Circuits</h3>
                 <ol class="list-circuits">
@@ -26,9 +26,9 @@
                 {{ csrf_field() }}
 
                 <div class="row form-horizontal form-group{{ $errors->has('pole') ? ' has-error' : '' }}">
-                    <label for="pole" class="col-md-2 control-label">Pole position</label>
+                    <label for="pole" class="col-md-3 control-label">Pole position</label>
 
-                    <div class="col-md-8">
+                    <div class="col-md-6">
                         <select id="pole" type="text" class="form-control" name="pole" required >
                             @forelse($gp->pilotes as $pilote)
                                 <option name="pole" value="{{$pilote->id}}">
@@ -49,9 +49,9 @@
 
                 @for($i = 1; $i <= 10; $i++)
                     <div class="row row-pilote form-horizontal form-group{{ $errors->has('position'.$i) ? ' has-error' : '' }}">
-                        <label for="{{'position'.$i}}" class="col-md-2 control-label">{{$i}}</label>
+                        <label for="{{'position'.$i}}" class="col-md-3 control-label">{{$i}}</label>
 
-                        <div class="col-md-8">
+                        <div class="col-md-6">
                             <select id="{{'position'.$i}}" type="text" class="form-control" name="{{'position'.$i}}" value="{{ old('position'.$i) }}" required >
                                 @forelse($gp->pilotes as $pilote)
                                     <option name="{{'pilote'.$i}}" value="{{$pilote->id}}">
@@ -74,7 +74,7 @@
                     <input name="type" type="hidden" value="bet">
 
                     <div class="form-group">
-                        <div class="col-md-6 col-md-offset-2">
+                        <div class="col-md-6 col-md-offset-3">
                             <button type="submit" class="btn btn-primary">
                                 Valider
                             </button>
