@@ -9,7 +9,7 @@
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
 nav.navbar {
-    background-color: #28324E;
+    background-color: #22313F;
     color: white;
     font-weight: bold;
     border: none;
@@ -38,12 +38,12 @@ nav.navbar {
 
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-brand, .navbar-default .navbar-nav > li > a {
-    background-color: #28324E;
+    background-color: #22313F;
     color: white;
 }
 
 .navbar-default .navbar-nav.navbar-left > li:hover > a, .navbar-default .navbar-nav.navbar-left > li:hover > a {
-    background-color: #475577;
+    background-color: #2C3E50;
     color: white;
 } 
 
@@ -55,7 +55,7 @@ nav.navbar {
 .dropdown-menu, .dropdown-menu li a, .dropdown, .dropdown-container,
 .dropdown-container li.dropdown a {
     background-color: #ff0000;
-    color: #28324E;
+    color: #22313F;
 }
 
 .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus,
@@ -65,7 +65,7 @@ nav.navbar {
 .navbar-default .navbar-nav > li:hover > a, .navbar-default .navbar-nav > li:focus > a,
  .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
     background-color: #df0000;
-    color: #28324E;
+    color: #22313F;
 }
 
 .dropdown-menu {
@@ -75,7 +75,7 @@ nav.navbar {
 
 .dropdown-menu li {
     padding: 5px 0;    
-    border-top: 1px #28324E solid;
+    border-top: 1px #22313F solid;
 }
 
 .content, html, body {
@@ -92,7 +92,7 @@ nav.navbar {
     height: 400px;
     margin: 75px auto 0 auto;
     position: relative;
-    border: #28324E solid 10px;
+    border: #22313F solid 10px;
 }
 
 .gp {
@@ -133,10 +133,14 @@ nav.navbar {
     padding: 20px 35px;
     margin: 25px auto;
     text-align: center;
-    background-color: #28324E;
+    background-color: #22313F;
     font-size: 20px;
     font-weight: bold;
     color: white;
+}
+
+.links a:hover {
+    background-color: #2C3E50;
 }
 
 .links a.blue {
