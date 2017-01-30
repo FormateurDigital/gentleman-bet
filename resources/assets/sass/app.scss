@@ -21,7 +21,7 @@ nav.navbar {
     width: 100%;
     overflow: hidden;
     position: relative;
-    border-bottom: 5px #ff2800 solid;
+    border-bottom: 5px #ff0000 solid;
     background-position: center center;
 }
 
@@ -54,7 +54,7 @@ nav.navbar {
 
 .dropdown-menu, .dropdown-menu li a, .dropdown, .dropdown-container,
 .dropdown-container li.dropdown a {
-    background-color: #ff2800;
+    background-color: #ff0000;
     color: #28324E;
 }
 
@@ -64,7 +64,7 @@ nav.navbar {
 .dropdown-container li.dropdown:focus, .dropdown-container li.dropdown:hover,
 .navbar-default .navbar-nav > li:hover > a, .navbar-default .navbar-nav > li:focus > a,
  .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-    background-color: #df0800;
+    background-color: #df0000;
     color: #28324E;
 }
 
@@ -144,7 +144,7 @@ nav.navbar {
 }
 
 .links a.red {
-    background-color: #ff2800;
+    background-color: #ff0000;
 }
 
 .links a.green {
@@ -156,7 +156,7 @@ nav.navbar {
 }
 
 .links a.red:hover {
-    background-color: #df0800;
+    background-color: #df0000;
 }
 
 .links a.green:hover {
