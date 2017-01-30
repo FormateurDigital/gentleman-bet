@@ -3,10 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <!--{{$gp->name}}
-           <img src="{{$gp->avatar->url()}}">
-            {{$gp->date}}-->
-            <h1 class="gp_h1"><img src="{{$gp->avatar->url()}}"> {{ $gp->name }} <span class="little">- {{ $gp->date }}</span></h1>
+            <h1 class="gp_h1"><img src="{{$gp->flag()}}"> {{ $gp->name }} <span class="little">- {{ $gp->date }}</span></h1>
             <table class="table">
                 <thead>
                 <tr>
