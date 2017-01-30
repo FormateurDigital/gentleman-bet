@@ -12,7 +12,7 @@
                             <div class="gp-container">
                                 <div class="gp">
                                     @if(isset($gp))
-                                        <img class="gp-img" src="{{ $gp->avatar->url() }}" />
+                                        <img class="gp-img" src="{{ $gp->flag()}}" />
                                         <p>
                                             {{$gp->name}}
                                         </p>
