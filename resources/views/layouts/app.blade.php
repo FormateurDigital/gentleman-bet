@@ -9,9 +9,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-
     <!-- Styles -->
-    <link href="css/app.css" rel="stylesheet">
+    <link href="{{asset('css/app.css')}}" rel="stylesheet">
+    <link rel="stylesheet" src="{{asset('/css/all.css')}}"></script>
 
     <!-- Scripts -->
     <script>
@@ -19,7 +19,6 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
-    {{Carbon\Carbon::setLocale('fr')}}
 </head>
 <body>
     <div id="app">
@@ -37,7 +36,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        F<FONT color="red">1 </FONT> Gentleman bet
                     </a>
                 </div>
 
@@ -47,12 +46,20 @@
                         &nbsp;
                     </ul>
 
+                    <ul class="nav navbar-nav navbar-left admin-nav">
+                        @if (Auth::user() && Auth::user()->role == 'admin')
+                            <li><a href="{{action('SeasonsController@create')}}">Créer une Saison</a></li>
+                            <li><a href="{{action('StablesController@create')}}">Créer une Ecurie</a></li>
+                            <li><a href="{{action('PilotesController@create')}}">Créer un Pilote</a></li>
+                        @endif
+                    </ul>
+
                     <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav navbar-right dropdown-container">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li><a href="{{ url('/login') }}">Login</a></li>
-                            <li><a href="{{ url('/register') }}">Register</a></li>
+                            <li><a href="{{ url('/login') }}">Connexion</a></li>
+                            <li><a href="{{ url('/register') }}">Inscription</a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -64,7 +71,7 @@
                                         <a href="{{ url('/logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                            Déconnexion
                                         </a>
 
                                         <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">

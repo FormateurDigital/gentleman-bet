@@ -3,8 +3,8 @@
 @section('content')
     <div class="container">
         <div class="row">
-            {{$season->name}}
-            <table>
+            <h1>{{$season->name}}</h1>
+            <table class="table">
                 <thead>
                 <tr>
                     <th>Rang</th>

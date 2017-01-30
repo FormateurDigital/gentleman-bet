@@ -2,12 +2,27 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
-            @forelse($seasons as $season)
-                <a href="{{action('SeasonsController@showResults', ['season' => $season->id])}}">{{$season->name}}</a>
-            @empty
-                No Gp
-            @endforelse
-        </div>
+        <h1>Saisons</h1>
+        <table class="col-md-5 table">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @forelse($seasons as $season)
+                    <tr>
+                        <td>
+                            <div class="row season-row">
+                                <a href="{{action('SeasonsController@showResults', ['season' => $season->id])}}">{{$season->name}}</a>
+                            </div>
+                        </td>
+                    </tr>
+                @empty
+                    No Gp
+                @endforelse
+            </tbody>
+        </table>
     </div>
 @endsection
