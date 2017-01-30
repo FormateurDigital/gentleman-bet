@@ -18,7 +18,7 @@
                         </h3>
                         <div class="form-horizontal">
                         <div class="form-group row{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-3 control-label">Name</label>
+                            <label for="name" class="col-md-3 control-label">Nom</label>
 
                             <div class="col-md-9">
                                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
@@ -32,7 +32,7 @@
                         </div>
 
                         <div class="form-group row{{ $errors->has('avatar') ? ' has-error' : '' }}">
-                            <label for="avatar" class="col-md-3 control-label">Flag</label>
+                            <label for="avatar" class="col-md-3 control-label">Drapeau</label>
 
                             <div class="col-md-9">
                                 <?= Form::file('avatar') ?>
@@ -118,7 +118,7 @@
                         <div class="form-group row">
                             <div class="col-md-9 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Add Event
+                                    Ajouter le Grand Prix
                                 </button>
                             </div>
                         </div>
@@ -127,7 +127,7 @@
                     {{ Form::close() }}
                 @if (isset($gp))
                     <div class="col-md-9 col-md-offset-4">
-                        <a href="{{action('Gp_PiloteController@create', $gp)}}" class="btn btn-info" role="button">Go to Pilote selection</a>
+                        <a href="{{action('Gp_PiloteController@create', $gp)}}" class="btn btn-info" role="button">Selectionner vos Pilotes</a>
                     </div>
                     </div>
                 @endif

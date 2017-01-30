@@ -4,7 +4,7 @@
     <div class="container gp-show">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <h1 class="gp_h1"><img src="{{$gp->avatar->url()}}"> {{ $gp->name }} <span class="little">- {{ $gp->date }}</span></h1>
+                <h1 class="gp_h1"><img src="{{$gp->flag()}}"> {{ $gp->name }} <span class="little">- {{ $gp->date }}</span></h1>
                 <h2 id="timer" class="gp_h2">
                     <input id="betTime" type="hidden" value="{{$gp->betTime()->format('Y/m/d h:m:s')}}">
                 </h2>
@@ -18,7 +18,7 @@
                 </ol>
                 @if (!$gp->betable())
                     <hr>
-                    <h3><a href="{{action('ResultsController@show', ['gp'=> $gp->id])}}">Pronos & Resultats</a></h3>
+                    <h3><a href="{{action('ResultsController@show', ['gp'=> $gp->id])}}">Pronos & Résultats</a></h3>
                 @endif
                 <hr>
                 <h3>Mes Pronos</h3><br>
@@ -88,7 +88,7 @@
                     <div class="form-group">
                         <div class="col-md-2 col-md-offset-5">
                             <button type="submit" class="btn btn-primary">
-                                Rentrer le Resultat
+                                Rentrer le Pari
                             </button>
                         </div>
                     </div>

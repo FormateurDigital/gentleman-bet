@@ -5,13 +5,13 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+                <div class="panel-heading">Création de Pilote</div>
                 <div class="panel-body form-horizontal">
                     {{ Form::open(['url' => action('PilotesController@store'), 'method' => 'POST', 'files' => true]) }}
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
+                            <label for="name" class="col-md-4 control-label">Nom</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
@@ -25,7 +25,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('acronym') ? ' has-error' : '' }}">
-                            <label for="acronym" class="col-md-4 control-label">Acronym</label>
+                            <label for="acronym" class="col-md-4 control-label">Acronyme</label>
 
                             <div class="col-md-6">
                                 <input id="acronym" type="text" class="form-control" name="acronym" value="{{ old('acronym') }}" required >
@@ -39,7 +39,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('stable') ? ' has-error' : '' }}">
-                            <label for="stable" class="col-md-4 control-label">Acronym</label>
+                            <label for="stable" class="col-md-4 control-label">Acronyme</label>
 
                             <div class="col-md-6">
                                 <select class="form-control" name="stable">
@@ -76,7 +76,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Create
+                                    Créer
                                 </button>
                             </div>
                         </div>

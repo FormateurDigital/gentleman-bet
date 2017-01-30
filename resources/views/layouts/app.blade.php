@@ -10,8 +10,8 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
     <!-- Styles -->
-    <link href="/css/app.css" rel="stylesheet">
-    <link rel="stylesheet" src="{{URL::asset('css/all.css')}}"></script>    
+    <link href="{{asset('css/app.css')}}" rel="stylesheet">
+    <link rel="stylesheet" src="{{asset('/css/all.css')}}"></script>
 
     <!-- Scripts -->
     <script>
@@ -36,7 +36,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'F1 Gentleman bet') }}
+                        F<FONT color="red">1 </FONT> Gentleman bet
                     </a>
                 </div>
 
@@ -48,9 +48,9 @@
 
                     <ul class="nav navbar-nav navbar-left admin-nav">
                         @if (Auth::user() && Auth::user()->role == 'admin')
-                            <li><a href="{{action('SeasonsController@create')}}">Create Season</a></li>      
-                            <li><a href="{{action('StablesController@create')}}">Create Stable</a></li>
-                            <li><a href="{{action('PilotesController@create')}}">Create Pilote</a></li>                       
+                            <li><a href="{{action('SeasonsController@create')}}">Créer une Saison</a></li>
+                            <li><a href="{{action('StablesController@create')}}">Créer une Ecurie</a></li>
+                            <li><a href="{{action('PilotesController@create')}}">Créer un Pilote</a></li>
                         @endif
                     </ul>
 
@@ -58,8 +58,8 @@
                     <ul class="nav navbar-nav navbar-right dropdown-container">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li><a href="{{ url('/login') }}">Login</a></li>
-                            <li><a href="{{ url('/register') }}">Register</a></li>
+                            <li><a href="{{ url('/login') }}">Connexion</a></li>
+                            <li><a href="{{ url('/register') }}">Inscription</a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -71,7 +71,7 @@
                                         <a href="{{ url('/logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                            Déconnexion
                                         </a>
 
                                         <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
