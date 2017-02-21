@@ -12,10 +12,12 @@
                             <div class="gp-container">
                                 <div class="gp">
                                     @if(isset($gp))
-                                        <img class="gp-img" src="{{ $gp->flag()}}" />
-                                        <p>
-                                            {{$gp->name}}
-                                        </p>
+                                        <a href="{{action('GrandPrixController@show', ['id' => $gp->id])}}">
+                                            <img class="gp-img" src="{{ $gp->flag()}}" />
+                                            <p>
+                                                {{$gp->name}}
+                                            </p>
+                                        </a>
                                     @else
                                         Aucun Grands Prix en cours
                                     @endif

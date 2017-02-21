@@ -52,9 +52,9 @@
                         <label for="{{'position'.$i}}" class="col-md-5 control-label">{{$i}}</label>
 
                         <div class="col-md-2">
-                            <select id="{{'position'.$i}}" type="text" class="form-control" name="{{'position'.$i}}" value="{{ old('position'.$i) }}" required >
+                            <select id="{{'position'.$i}}" type="text" class="form-control" name="{{'position'.$i}}" value="{{ old('position'.$i) }}" data-old="0" required >
                                 @forelse($gp->pilotes as $pilote)
-                                    <option name="{{'pilote'.$i}}" value="{{$pilote->id}}">
+                                    <option name="{{'pilote'.$i}}" value="{{$pilote->id}}" data-stable="{{$pilote->stable->name}}" data-name="{{$pilote->name  }}">
                                         {{$pilote->acronym}}
                                     </option>
                                 @empty
@@ -66,6 +66,8 @@
                                     <strong>{{ $errors->first('position'.$i) }}</strong>
                                 </span>
                             @endif
+                        </div>
+                        <div id="text-{{'position'.$i}}" class="col-md-4 text-center">
                         </div>
                     </div>
                 @endfor
@@ -111,10 +113,24 @@
     </div>
 
     <script>
+        //TImer
         var betTime = $('#betTime').val();
         console.log(betTime);
         $('#timer').countdown(betTime, function(event) {
             $(this).html(event.strftime('%D jours %Hh:%Mm:%Ss'));
         });
+
+        //Block the already selected option
+        elems = $("select").not("#pole");
+        elems.change(function () {
+            $("option[value=" + $(this)[0].dataset.old + "]").removeAttr("disabled");
+            $(this)[0].dataset.old = $(this).val();
+            for (var item of elems.not($(this))) {
+                $("select[name=" + item.name + "] option[value=" + $(this).val() + "]").attr("disabled", "disabled");
+            }
+            var position = $(this).attr("id");
+            var option = $(this).find("option[value=" + $(this).val() + "]");
+            $("#text-" + position).html("(" + option[0].dataset.stable +  ") - " + option[0].dataset.name);
+        })
     </script>
 @endsection

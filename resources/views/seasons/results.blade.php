@@ -11,19 +11,23 @@
                     <th>Pronostiqueurs</th>
                     <th>TOTAL</th>
                     @forelse($gps as $gp)
-                        <th>{{$gp->name}}</th>
+                        <th><a href="{{action('GrandPrixController@show', ['id' => $gp->id])}}">{{$gp->name}}</a></th>
                     @empty
                     @endforelse
                 </tr>
                 </thead>
                 <tbody>
                 @forelse($users as $user)
-                    <tr>
-                        <td>0</td>
+                    @if ($user->id == \Auth::user()->id)
+                        <tr class="alert alert-info">
+                    @else
+                        <tr>
+                    @endif
+                        <td>{{$loop->index + 1}}</td>
                         <td>{{$user->name}}</td>
-                        <td>0</td>
+                        <td>{{$users_total[$user->id]}}</td>
                         @forelse($gps as $gp)
-                            <td>0</td>
+                            <td>{{($total = $gp->results->where('user_id', $user->id)->where('type', 'bet')->first()) !== null ? $total->point->total : "None"}}</td>
                         @empty
                         @endforelse
                     </tr>

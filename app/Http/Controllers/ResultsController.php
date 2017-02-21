@@ -50,8 +50,22 @@ class ResultsController extends Controller
         return redirect()->back()->withValidation('Pari pris en compte !');
     }
 
-    private function _proute ($result, $bet, $position) {
-        dd($result->$position);
+    private function _calculate_position ($result, $bet, $position)
+    {
+        if ($result->{'position' . $position} == $bet->{'position' . $position})
+            return 25;
+        else {
+            $i = 1;
+            while ($result->{'position' . $position} != $bet->{'position' . $i})
+                $i++;
+            $i = $i - 1;
+            $abs = abs($position - $i);
+            if ($abs == 1)
+                return 18;
+            else
+                return 20 - 2 * $abs;
+        }
+
     }
 
     private function _calculate_points($gp) {
@@ -61,15 +75,65 @@ class ResultsController extends Controller
 
         foreach ($bets as $bet) {
             $point = new Points();
-            $this->_proute($result, $bet, 'position1');
+            $total = 0;
+            for ($i = 1; $i <= 10; $i++) {
+                $point->{'position' . $i} = $this->_calculate_position($result, $bet, $i);
+                $total += $point->{'position' . $i};
+            }
+            if ($result->pole == $bet->pole)
+                $point->pole = 20;
+            else
+                $point->pole = 0;
+            if ($bet->position1 == $result->position1) {
+                if ($bet->position2 == $result->position2) {
+                    if ($bet->position3 == $result->position3) {
+                        $point->podium = 100;
+                    }
+                    else
+                        $point->duo = 60;
+                }
+                elseif ($bet->position2 == $result->position3) {
+                    if ($bet->position3 == $result->position2)
+                        $point->diumpo = 50;
+                }
+                else
+                    $point->vainq = 20;
+            }
+            elseif ($bet->position2 == $result->position2) {
+                if ($bet->position1 == $result->position3)
+                    if ($bet->position3 == $result->position1)
+                        $point->diumpo = 60;
+            }
+            elseif ($bet->position3 == $result->position3) {
+                if ($bet->position2 == $result->position1)
+                    if ($bet->position1 == $result->position2)
+                        $point->diumpo = 50;
+            }
+            elseif ($bet->position2 == $result->position1)
+                if ($bet->position1 == $result->position2)
+                    $point->udo = 30;
+            $point->total = $total + $point->pole + $point->podium + $point->diumpo + $point->duo + $point->udo + $point->vainq;
+            $bet->point()->save($point);
         }
+     }
 
-        dd($result);
-    }
-
-    public function show ($gp_id) {
+    public function show ($gp_id)
+    {
         $gp = GrandPrix::findOrFail($gp_id);
-        $results = $gp->results;
-        return view('results/show')->withResults($results)->withGp($gp);
+        if (isset($gp->results->point)) {
+            $results = $gp->results->sortByDesc(function ($elem) {
+                return ($elem->point->total);
+            });
+        }
+        $results = $gp->results->sortByDesc(function ($elem) {
+            return ($elem->type);
+        });
+
+        $pilotes = $gp->pilotes;
+        $id_pilotes = array();
+        foreach ($pilotes as $pilote)
+            $id_pilotes[$pilote->id] = $pilote->acronym;
+
+        return view('results/show')->withResults($results)->withGp($gp)->withIdPilotes($id_pilotes);
     }
 }
