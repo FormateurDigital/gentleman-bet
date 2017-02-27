@@ -12,6 +12,10 @@ class Gp_PiloteController extends Controller
 {
     //
 
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     public function create ($gp_id) {
 
         $gp = GrandPrix::findOrFail($gp_id);

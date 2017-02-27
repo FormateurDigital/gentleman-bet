@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Création de Pilote</div>
                 <div class="panel-body form-horizontal">
-                    {{ Form::open(['url' => action('PilotesController@store'), 'method' => 'POST', 'files' => true]) }}
+                    {{ Form::open(['url' => action('PilotesController@store'), 'method' => 'POST', 'files' => true ]) }}
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -39,7 +39,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('stable') ? ' has-error' : '' }}">
-                            <label for="stable" class="col-md-4 control-label">Acronyme</label>
+                            <label for="stable" class="col-md-4 control-label">Ecurie</label>
 
                             <div class="col-md-6">
                                 <select class="form-control" name="stable">

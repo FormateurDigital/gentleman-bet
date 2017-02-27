@@ -9,6 +9,10 @@ use App\Pilote;
 
 class PilotesController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     //
     public function create () {
 
@@ -23,7 +27,8 @@ class PilotesController extends Controller
         $this->validate($request, [
             'name'      => 'required | string',
             'acronym'   => 'required | string | size:3',
-            'stable'    => 'required'
+            'stable'    => 'required',
+            'avatar'    => 'required | mimes:jpeg,jpg,png'
         ]);
 
         $stable = Stable::findOrFail(Input::get('stable'));

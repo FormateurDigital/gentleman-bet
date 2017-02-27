@@ -20,7 +20,7 @@
                                     <select id="{{'pilote'.$i}}" type="text" class="form-control" name="{{'pilote'.$i}}" value="{{ old('pilote'.$i) }}" required >
                                         @forelse($pilotes as $pilote)
                                             <option name="{{'pilote'.$i}}" value="{{$pilote->id}}">
-                                                {{$pilote->name}}
+                                                {{$pilote->name . " - (" . $pilote->stable->name . ")"}}
                                             </option>
                                         @empty
                                             Vous n'avez aucun PILOTE !
@@ -48,5 +48,9 @@
             </div>
         </div>
     </div>
+
+    <script>
+
+    </script>
 
 @endsection

@@ -21,17 +21,25 @@
                     <h3><a href="{{action('ResultsController@show', ['gp'=> $gp->id])}}">Pronos & Résultats</a></h3>
                 @endif
                 <hr>
-                <h3>Mes Pronos</h3><br>
+                    <h3>Mes Pronos</h3><br>
+                @if (isset($resultErrors))
+                    <div class="alert alert-danger">
+                        {{$resultErrors}}
+                    </div>
+                @elseif (isset($validation))
+                    <div class="alert alert-success">
+                        {{$validation}}
+                    </div>
+                @endif
                 {{ Form::open(['url' => action('ResultsController@bet', ['user' => \Auth::user()->id,'gp' => $gp->id]), 'method' => 'POST']) }}
                 {{ csrf_field() }}
-
                 <div class="row form-horizontal form-group{{ $errors->has('pole') ? ' has-error' : '' }}">
                     <label for="pole" class="col-md-5 control-label">Pole position</label>
 
                     <div class="col-md-2">
-                        <select id="pole" type="text" class="form-control" name="pole" required >
+                        <select id="pole" type="text" class="form-control" name="pole" data-selected="{{isset($input) ? $input["pole"] : ""}}" required >
                             @forelse($gp->pilotes as $pilote)
-                                <option name="pole" value="{{$pilote->id}}">
+                                <option name="pole" value="{{$pilote->id}}" data-stable="{{$pilote->stable->name}}" data-name="{{$pilote->name  }}">
                                     {{$pilote->acronym}}
                                 </option>
                             @empty
@@ -44,15 +52,16 @@
                             </span>
                         @endif
                     </div>
+                    <div id="text-pole" class="col-md-4 text-center">
+                    </div>
                 <br><br>
                 </div>
 
                 @for($i = 1; $i <= 10; $i++)
                     <div class="row row-pilote form-horizontal form-group{{ $errors->has('position'.$i) ? ' has-error' : '' }}">
                         <label for="{{'position'.$i}}" class="col-md-5 control-label">{{$i}}</label>
-
-                        <div class="col-md-2">
-                            <select id="{{'position'.$i}}" type="text" class="form-control" name="{{'position'.$i}}" value="{{ old('position'.$i) }}" data-old="0" required >
+                            <div class="col-md-2">
+                            <select id="{{'position'.$i}}" type="text" class="form-control" name="{{'position'.$i}}" value="{{ old('position'.$i) }}" data-old="0" data-selected="{{isset($input) ? $input["position" . $i] : ""}}" required >
                                 @forelse($gp->pilotes as $pilote)
                                     <option name="{{'pilote'.$i}}" value="{{$pilote->id}}" data-stable="{{$pilote->stable->name}}" data-name="{{$pilote->name  }}">
                                         {{$pilote->acronym}}
@@ -115,13 +124,32 @@
     <script>
         //TImer
         var betTime = $('#betTime').val();
-        console.log(betTime);
         $('#timer').countdown(betTime, function(event) {
             $(this).html(event.strftime('%D jours %Hh:%Mm:%Ss'));
         });
 
         //Block the already selected option
         elems = $("select").not("#pole");
+
+        for (var item of elems) {
+            for (var child of item.children) {
+                if (item.dataset.selected == "")
+                    $(item).prop("selectedIndex", -1);
+                else if (child.value == item.dataset.selected)
+                    $(child).attr("selected", true);
+
+            }
+            if (item.value != "") {
+                var position = item.id;
+                var option = $('option[value=' + item.value + ']').first();
+                $("#text-" + position).html("(" + option[0].dataset.stable + ") - " + option[0].dataset.name);
+
+                for (var elem of elems.not($(item))) {
+                    $("select[name=" + elem.name + "] option[value=" + item.value + "]").attr("disabled", "disabled");
+                }
+            }
+        }
+
         elems.change(function () {
             $("option[value=" + $(this)[0].dataset.old + "]").removeAttr("disabled");
             $(this)[0].dataset.old = $(this).val();

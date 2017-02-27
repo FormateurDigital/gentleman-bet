@@ -13,6 +13,10 @@ class ResultsController extends Controller
 {
     //
 
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     public function bet ($gp_id, $user_id) {
         $gp = GrandPrix::findOrFail($gp_id);
         $result = $gp->results()->where('user_id', $user_id)->first();
@@ -21,7 +25,7 @@ class ResultsController extends Controller
         elseif (Input::get('type') == 'result') {
             $resultat = $gp->results()->where('type', 'result')->first();
             if ($resultat)
-                return redirect()->back()->withResultErrors('Vous avez deja annonce des resultats');
+                return view('grand_prixs/show')->withGp($gp)->withResultErrors('Vous avez deja annonce des resultats')->withInput(Input::all());
             else
                 $result = new Result();
         }
@@ -46,8 +50,7 @@ class ResultsController extends Controller
 
         if (Input::get('type') === "result")
             $this->_calculate_points($gp);
-
-        return redirect()->back()->withValidation('Pari pris en compte !');
+        return view('grand_prixs/show')->withGp($gp)->withValidation('Pari pris en compte !')->withInput(Input::all());
     }
 
     private function _calculate_position ($result, $bet, $position)

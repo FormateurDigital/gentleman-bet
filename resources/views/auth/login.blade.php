@@ -54,9 +54,9 @@
                                     Connexion
                                 </button>
 
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">
+                                <!-- <a class="btn btn-link" href="{{ url('/password/reset') }}">
                                     Mot de Passe Oublié ?
-                                </a>
+                                </a> --L>
                             </div>
                         </div>
                     </form>

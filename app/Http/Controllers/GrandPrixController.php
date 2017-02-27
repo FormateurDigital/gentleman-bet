@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Result;
 use Carbon\Carbon;
 use App\GrandPrix;
 use App\Season;
@@ -13,10 +14,18 @@ class GrandPrixController extends Controller
 {
     //
 
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     public function show ($id) {
 
         $gp = GrandPrix::findOrFail($id);
-        return view('grand_prixs/show')->withGp($gp);
+        $result = $gp->results()->where('user_id', \Auth::user()->id)->where('type', '!=', 'result')->first();
+        $input["pole"] = $result->pole;
+        for ($i = 1; $i <= 10; $i++)
+            $input["position" . $i] = (string)$result->{'position' . $i};
+        return view('grand_prixs/show')->withGp($gp)->withInput($input);
     }
 
     public function create () {
