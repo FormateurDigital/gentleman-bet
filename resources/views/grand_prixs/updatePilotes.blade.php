@@ -7,10 +7,8 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Sélectionner les pilotes</div>
                     <div class="panel-body form-horizontal">
-                        {{ Form::open(['url' => action('Gp_PiloteController@store'), 'method' => 'POST', 'files' => true]) }}
+                        {{ Form::open(['url' => action('GrandPrixController@storePilotes', ['id' => $gp->id]), 'method' => 'POST']) }}
                         {{ csrf_field() }}
-
-                        <input type="hidden" id="season" name="season" value="{{$season}}">
 
                         <h2 class="col-md-offset-3">Pilotes :</h2>
 

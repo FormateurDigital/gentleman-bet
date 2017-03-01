@@ -27,7 +27,7 @@
                         <td>{{$user->name}}</td>
                         <td>{{$users_total[$user->id]}}</td>
                         @forelse($gps as $gp)
-                            <td>{{($total = $gp->results->where('user_id', $user->id)->where('type', 'bet')->first()) !== null ? $total->point->total : "None"}}</td>
+                            <td>{{($total = $gp->results->where('user_id', $user->id)->where('type', 'bet')->first()) !== null ? isset($total->point) ? $total->point->total : "None" : "None"}}</td>
                         @empty
                         @endforelse
                     </tr>

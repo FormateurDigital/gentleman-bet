@@ -40,9 +40,12 @@ class SeasonsController extends Controller
         foreach ($users as $user) {
             $users_total[$user->id] = 0;
             foreach ($gps as $gp)
-                foreach ($gp->results->where('user_id', $user->id)->where('type', 'bet') as $result)
-                    $users_total[$user->id] += $result->point->total;
+                foreach ($gp->results->where('user_id', $user->id)->where('type', 'bet') as $result) {
+                    if (isset($result->point))
+                        $users_total[$user->id] += $result->point->total;
+                }
         }
+        ksort($users_total);
         return view('seasons/results')->withSeason($season)->withGps($gps)->withUsers($users)->withUsersTotal($users_total);
     }
 

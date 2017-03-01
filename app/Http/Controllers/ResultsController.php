@@ -19,6 +19,7 @@ class ResultsController extends Controller
 
     public function bet ($gp_id, $user_id) {
         $gp = GrandPrix::findOrFail($gp_id);
+        $gps = $gp->season->gp->sortByDesc('date');
         $result = $gp->results()->where('user_id', $user_id)->first();
         if (!$result)
             $result = new Result();
@@ -48,6 +49,31 @@ class ResultsController extends Controller
         $result->gp()->associate($gp);
         $result->save();
 
+        foreach ($gps as $index => $gpd) {
+            if ($gpd->id == $gp_id)
+                $pos = $index;
+        }
+        for ($i = $index; $i < count($gps); $i++) {
+            $res = $gps[$i]->results()->where('type', 'bet')->where('user_id', $user_id)->first();
+            if (!$res)
+                $res = new Result();
+            $res->type = $result->type;
+            $res->pole = $result->pole;
+            $res->position1 = $result->position1;
+            $res->position2 = $result->position2;
+            $res->position3 = $result->position3;
+            $res->position4 = $result->position4;
+            $res->position5 = $result->position5;
+            $res->position6 = $result->position6;
+            $res->position7 = $result->position7;
+            $res->position8 = $result->position8;
+            $res->position9 = $result->position9;
+            $res->position10 = $result->position10;
+            $res->user()->associate($user);
+            $res->gp()->associate($gps[$i]);
+            $res->save();
+        }
+
         if (Input::get('type') === "result")
             $this->_calculate_points($gp);
         return view('grand_prixs/show')->withGp($gp)->withValidation('Pari pris en compte !')->withInput(Input::all());
@@ -59,8 +85,11 @@ class ResultsController extends Controller
             return 25;
         else {
             $i = 1;
-            while ($result->{'position' . $position} != $bet->{'position' . $i})
+            while ($result->{'position' . $position} != $bet->{'position' . $i}) {
                 $i++;
+                if ($i == 11)
+                    return 0;
+            }
             $i = $i - 1;
             $abs = abs($position - $i);
             if ($abs == 1)
