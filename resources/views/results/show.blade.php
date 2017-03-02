@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <h1 class="gp_h1"><img src="{{$gp->flag()}}"> {{ $gp->name }} <span class="little">- {{ $gp->date }}</span></h1>
+            <h1 class="gp_h1"><a href="{{action('GrandPrixController@show', ['id' => $gp->id])}}"><img src="{{$gp->flag()}}"></a>{{ $gp->name }} <span class="little">- {{ $gp->date }}</span></h1>
             <table class="table">
                 <thead>
                    <tr>
@@ -51,17 +51,18 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td>{{$id_pilotes[$result->pole]}}</td>
-                                <td>{{$id_pilotes[$result->position1]}}</td>
-                                <td>{{$id_pilotes[$result->position2]}}</td>
-                                <td>{{$id_pilotes[$result->position3]}}</td>
-                                <td>{{$id_pilotes[$result->position4]}}</td>
-                                <td>{{$id_pilotes[$result->position5]}}</td>
-                                <td>{{$id_pilotes[$result->position6]}}</td>
-                                <td>{{$id_pilotes[$result->position7]}}</td>
-                                <td>{{$id_pilotes[$result->position8]}}</td>
-                                <td>{{$id_pilotes[$result->position9]}}</td>
-                                <td>{{$id_pilotes[$result->position10]}}</td>
+                                <td>{{isset($id_pilotes[$result->pole]) ? $id_pilotes[$result->pole] : "---"}}</td>
+                                <td>{{isset($id_pilotes[$result->position1]) ? $id_pilotes[$result->position1] : "---"}}</td>
+                                <td>{{isset($id_pilotes[$result->position2]) ? $id_pilotes[$result->position2] : "---"}}</td>
+                                <td>{{isset($id_pilotes[$result->position3]) ? $id_pilotes[$result->position3] : "---"}}</td>
+                                <td>{{isset($id_pilotes[$result->position4]) ? $id_pilotes[$result->position4] : "---"}}</td>
+                                <td>{{isset($id_pilotes[$result->position5]) ? $id_pilotes[$result->position5] : "---"}}</td>
+                                <td>{{isset($id_pilotes[$result->position6]) ? $id_pilotes[$result->position6] : "---"}}</td>
+                                <td>{{isset($id_pilotes[$result->position7]) ? $id_pilotes[$result->position7] : "---"}}</td>
+                                <td>{{isset($id_pilotes[$result->position8]) ? $id_pilotes[$result->position8] : "---"}}</td>
+                                <td>{{isset($id_pilotes[$result->position9]) ? $id_pilotes[$result->position9] : "---"}}</td>
+                                <td>{{isset($id_pilotes[$result->position10]) ? $id_pilotes[$result->position10] : "---"}}</td>
+
                             </tr>
 
                             @if($result->type != "result")

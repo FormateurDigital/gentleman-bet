@@ -53,25 +53,28 @@ class ResultsController extends Controller
             if ($gpd->id == $gp_id)
                 $pos = $index;
         }
-        for ($i = $index; $i < count($gps); $i++) {
-            $res = $gps[$i]->results()->where('type', 'bet')->where('user_id', $user_id)->first();
-            if (!$res)
-                $res = new Result();
-            $res->type = $result->type;
-            $res->pole = $result->pole;
-            $res->position1 = $result->position1;
-            $res->position2 = $result->position2;
-            $res->position3 = $result->position3;
-            $res->position4 = $result->position4;
-            $res->position5 = $result->position5;
-            $res->position6 = $result->position6;
-            $res->position7 = $result->position7;
-            $res->position8 = $result->position8;
-            $res->position9 = $result->position9;
-            $res->position10 = $result->position10;
-            $res->user()->associate($user);
-            $res->gp()->associate($gps[$i]);
-            $res->save();
+        if (Input::get('type') != 'result') {
+            for ($i = $index; $i < count($gps); $i++) {
+                $res = $gps[$i]->results()->where('type', 'bet')->where('user_id', $user_id)->first();
+                if (!$res)
+                    $res = new Result();
+                $res->score = 0;
+                $res->type = $result->type;
+                $res->pole = $result->pole;
+                $res->position1 = $result->position1;
+                $res->position2 = $result->position2;
+                $res->position3 = $result->position3;
+                $res->position4 = $result->position4;
+                $res->position5 = $result->position5;
+                $res->position6 = $result->position6;
+                $res->position7 = $result->position7;
+                $res->position8 = $result->position8;
+                $res->position9 = $result->position9;
+                $res->position10 = $result->position10;
+                $res->user()->associate($user);
+                $res->gp()->associate($gps[$i]);
+                $res->save();
+            }
         }
 
         if (Input::get('type') === "result")

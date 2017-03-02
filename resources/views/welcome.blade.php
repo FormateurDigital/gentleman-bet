@@ -23,6 +23,15 @@
                                     @endif
                                 </div>
                             </div>
+                            @if (isset($last))
+                                <div class="links">
+                                    <a class="yellow"  href="{{action('GrandPrixController@show', ['id' => $last->id])}}">
+                                        <p>
+                                        <h2>Dernier Résultats</h2>
+                                        </p>
+                                    </a>
+                                </div>
+                            @endif
                         </div>
                         <div class="col-xs-12 col-md-6">
                             <div class="links-container">
@@ -36,7 +45,7 @@
                                     @endif
                                         <!--<a class="red" href="#">Classement</a>-->
                                         <a href="{{action('SeasonsController@showAll')}}">Historique</a>
-                                        <a class="green" href="#">Reglement</a>
+                                        <a class="green" href="#">Réglement</a>
                                     </div>
                                 </div>
                             </div>

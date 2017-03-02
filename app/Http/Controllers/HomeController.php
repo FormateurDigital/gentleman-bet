@@ -35,6 +35,9 @@ class HomeController extends Controller
 
         $today = Carbon::now('Europe/Paris');
         $gp = GrandPrix::where('date', '>', $today)->orderBy('date')->first();
-        return view('welcome')->withGp($gp);
+        $gp_last = GrandPrix::where('date', '<', $today)->get();
+        if (isset($gp_last))
+            $gp_last = $gp_last->sortBy('date')->last();
+        return view('welcome')->withGp($gp)->withLast($gp_last);
     }
 }
