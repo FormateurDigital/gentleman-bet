@@ -88,7 +88,7 @@ class ResultsController extends Controller
             return 25;
         else {
             $i = 1;
-            while ($result->{'position' . $position} != $bet->{'position' . $i}) {
+            while ($result->{'position' . $position} != $bet->{'position' . $i}) {   //4 - 2
                 $i++;
                 if ($i == 11)
                     return 0;
@@ -98,7 +98,7 @@ class ResultsController extends Controller
             if ($abs == 1)
                 return 18;
             else
-                return 20 - 2 * $abs;
+                return 20 - 2 * ($abs + 1);
         }
 
     }
