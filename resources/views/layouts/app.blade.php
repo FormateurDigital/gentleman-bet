@@ -36,7 +36,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        F<FONT color="red">1 </FONT> Gentleman bet
+                        F<FONT color="red">1 </FONT> Gentleman's bet
                     </a>
                 </div>
 

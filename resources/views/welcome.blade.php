@@ -2,7 +2,7 @@
 
 @section('content')
     <body>
-            <div class="welcome-banner" style='background-image: url("img/welcome-banner.jpg")'>
+                <div class="welcome-banner" style='background-image: url("img/welcome-banner.jpg"); background-color: #2C3E50; background-size:100%; background-repeat: no-repeat;'>
                 <!--<img src="" alt="">-->
             </div>
             <div class="flex-center position-ref full-height">
@@ -24,13 +24,11 @@
                                 </div>
                             </div>
                             @if (isset($last))
-                                <div class="links">
-                                    <a class="yellow"  href="{{action('GrandPrixController@show', ['id' => $last->id])}}">
-                                        <p>
-                                        <h2>Dernier Résultats</h2>
-                                        </p>
-                                    </a>
-                                </div>
+                                    <div class="links">
+                                        <a class="yellow"  href="{{action('GrandPrixController@show', ['id' => $last->id])}}">
+                                            Dernier Résultats
+                                        </a>
+                                    </div>
                             @endif
                         </div>
                         <div class="col-xs-12 col-md-6">
