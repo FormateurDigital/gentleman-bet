@@ -93,12 +93,11 @@ class ResultsController extends Controller
                 if ($i == 11)
                     return 0;
             }
-            $i = $i - 1;
             $abs = abs($position - $i);
             if ($abs == 1)
                 return 18;
             else
-                return 20 - 2 * $abs;
+                return 20 - (2 * $abs);
         }
 
     }
