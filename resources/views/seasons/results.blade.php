@@ -11,7 +11,7 @@
                     <th>Pronostiqueurs</th>
                     <th>TOTAL</th>
                     @forelse($gps as $gp)
-                        <th><a href="{{action('GrandPrixController@show', ['id' => $gp->id])}}">{{$gp->name}}</a></th>
+                        <th><a href="{{action('ResultsController@show', ['gp'=> $gp->id])}}">{{$gp->name}}</a></th>
                     @empty
                     @endforelse
                 </tr>

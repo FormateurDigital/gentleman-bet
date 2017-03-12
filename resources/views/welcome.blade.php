@@ -25,7 +25,7 @@
                             </div>
                             @if (isset($last))
                                     <div class="links">
-                                        <a class="yellow"  href="{{action('GrandPrixController@show', ['id' => $last->id])}}">
+                                        <a class="yellow"  href="{{action('ResultsController@show', ['gp'=> $last->id])}}">
                                             Dernier Résultats
                                         </a>
                                     </div>
