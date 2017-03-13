@@ -41,7 +41,7 @@
                     <label for="pole" class="col-md-5 control-label">Pole position</label>
 
                     <div class="col-md-2">
-                        <select id="pole" type="text" class="form-control" name="pole" data-selected="{{isset($input) ? $input["pole"] : ""}}" required >
+                        <select {{ ($gp->betable() || \Auth::user()->role == "admin") ?  " " : "disabled"}} id="pole" type="text" class="form-control" name="pole" data-selected="{{isset($input) ? $input["pole"] : ""}}" required >
                             @forelse($gp->pilotes as $pilote)
                                 <option name="pole" value="{{$pilote->id}}" data-stable="{{$pilote->stable->name}}" data-name="{{$pilote->name  }}">
                                     {{$pilote->acronym}}
@@ -65,7 +65,7 @@
                     <div class="row row-pilote form-horizontal form-group{{ $errors->has('position'.$i) ? ' has-error' : '' }}">
                         <label for="{{'position'.$i}}" class="col-md-5 control-label">{{$i}}</label>
                             <div class="col-md-2">
-                            <select id="{{'position'.$i}}" type="text" class="form-control" name="{{'position'.$i}}" value="{{ old('position'.$i) }}" data-old="0" data-selected="{{isset($input) ? $input["position" . $i] : ""}}" required >
+                            <select {{ ($gp->betable() || \Auth::user()->role == "admin") ?  " " : "disabled"}} id="{{'position'.$i}}" type="text" class="form-control" name="{{'position'.$i}}" value="{{ old('position'.$i) }}" data-old="0" data-selected="{{isset($input) ? $input["position" . $i] : ""}}" required >
                                 @forelse($gp->pilotes as $pilote)
                                     <option name="{{'pilote'.$i}}" value="{{$pilote->id}}" data-stable="{{$pilote->stable->name}}" data-name="{{$pilote->name  }}">
                                         {{$pilote->acronym}}
