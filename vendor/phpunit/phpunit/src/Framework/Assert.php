@@ -31,7 +31,7 @@ abstract class PHPUnit_Framework_Assert
      */
     public static function assertArrayHasKey($key, $array, $message = '')
     {
-        if (!(is_int($key) || is_string($key))) {
+        if (!(is_integer($key) || is_string($key))) {
             throw PHPUnit_Util_InvalidArgumentHelper::factory(
                 1,
                 'integer or string'
@@ -62,14 +62,14 @@ abstract class PHPUnit_Framework_Assert
      */
     public static function assertArraySubset($subset, $array, $strict = false, $message = '')
     {
-        if (!(is_array($subset) || $subset instanceof ArrayAccess)) {
+        if (!is_array($subset)) {
             throw PHPUnit_Util_InvalidArgumentHelper::factory(
                 1,
                 'array or ArrayAccess'
             );
         }
 
-        if (!(is_array($array) || $array instanceof ArrayAccess)) {
+        if (!is_array($array)) {
             throw PHPUnit_Util_InvalidArgumentHelper::factory(
                 2,
                 'array or ArrayAccess'
@@ -92,7 +92,7 @@ abstract class PHPUnit_Framework_Assert
      */
     public static function assertArrayNotHasKey($key, $array, $message = '')
     {
-        if (!(is_int($key) || is_string($key))) {
+        if (!(is_integer($key) || is_string($key))) {
             throw PHPUnit_Util_InvalidArgumentHelper::factory(
                 1,
                 'integer or string'

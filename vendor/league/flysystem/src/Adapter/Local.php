@@ -68,8 +68,6 @@ class Local extends AbstractAdapter
      * @param int    $writeFlags
      * @param int    $linkHandling
      * @param array  $permissions
-     *
-     * @throws LogicException
      */
     public function __construct($root, $writeFlags = LOCK_EX, $linkHandling = self::DISALLOW_LINKS, array $permissions = [])
     {
@@ -415,9 +413,7 @@ class Local extends AbstractAdapter
      *
      * @param SplFileInfo $file
      *
-     * @return array|void
-     *
-     * @throws NotSupportedException
+     * @return array
      */
     protected function normalizeFileInfo(SplFileInfo $file)
     {
@@ -490,6 +486,16 @@ class Local extends AbstractAdapter
         }
 
         return $normalized;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function applyPathPrefix($path)
+    {
+        $prefixedPath = parent::applyPathPrefix($path);
+
+        return str_replace('/', DIRECTORY_SEPARATOR, $prefixedPath);
     }
 
     /**

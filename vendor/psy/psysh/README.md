@@ -18,14 +18,12 @@ PsySH is a runtime developer console, interactive debugger and [REPL](https://en
 Download the `psysh` phar to install:
 
 ```
-wget https://git.io/psysh
+wget psysh.org/psysh
 chmod +x psysh
 ./psysh
 ```
 
 It's even awesomer if you put it somewhere in your system path (like `/usr/local/bin` or `~/bin`)!
-
-Additional releases—including compatibility releases for PHP 5.3, and for PHP without readline or intl—[are available on GitHub](https://github.com/bobthecow/psysh/releases).
 
 PsySH [is available via Composer](https://packagist.org/packages/psy/psysh), so you can use it in your project as well:
 
@@ -148,11 +146,6 @@ return array(
     //
     // To disable update checks entirely, set to 'never'.
     'updateCheck' => 'daily',
-
-    // Display an additional startup message. Default is ''.
-    // You can color and style the message thanks to the Symfony Console tags.
-    // See https://symfony.com/doc/current/console/coloring.html for more details.
-    'startupMessage' => sprintf('<info>%s</info>', shell_exec('uptime')),
 );
 ```
 
@@ -182,8 +175,7 @@ The PsySH `doc` command is great for documenting source code, but you'll need a 
  * Cake: [`cake console`](http://book.cakephp.org/3.0/en/console-and-shells/repl.html)
  * Drupal: [`drush php`](http://drushcommands.com/drush-8x/core/core-cli/), [drush-psysh](https://github.com/grota/drush-psysh)
  * eZ Publish: [`ezsh`](https://github.com/lolautruche/ezsh)
- * Jupyter: [Jupyter-PHP](https://github.com/Litipk/Jupyter-PHP)
- * Laravel: [`artisan tinker`](https://github.com/laravel/tinker)
+ * Laravel: [`artisan tinker`](https://github.com/laravel/framework/blob/5.0/src/Illuminate/Foundation/Console/TinkerCommand.php)
  * Lumen: [`artisan tinker`](https://github.com/vluzrmos/lumen-tinker)
  * Magento: [`magerun console`](https://github.com/netz98/n98-magerun/blob/develop/src/N98/Magento/Command/Developer/ConsoleCommand.php)
  * Pantheon CLI: [`terminus cli console`](https://github.com/pantheon-systems/terminus)
