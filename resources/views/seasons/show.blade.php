@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-    <h1>Calendrier</h1>
+    <h1>Calendrier - {{$season->name}}</h1>
     <table class="col-md-5 table">
         <thead>
             <tr>

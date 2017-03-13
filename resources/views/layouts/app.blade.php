@@ -36,7 +36,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        F<FONT color="red">1 </FONT> Gentleman's bet
+                        F<FONT color="red">1 </FONT> Gentleman'<s></s> bet
                     </a>
                 </div>
 
@@ -57,6 +57,14 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right dropdown-container">
                         <!-- Authentication Links -->
+                        @if (isset($gp))
+                            <li>
+                                <a href="{{action('SeasonsController@show', ['id' => $gp->season->id])}}">Calendrier</a>
+                            </li>
+                            <li>
+                                <a href="{{action('SeasonsController@showResults', ['id' => $gp->season->id])}}">Classement</a>
+                            </li>
+                        @endif
                         @if (Auth::guest())
                             <li><a href="{{ url('/login') }}">Connexion</a></li>
                         @else

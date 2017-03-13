@@ -4,7 +4,8 @@
     <div class="container gp-show">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <h1 class="gp_h1"><a href="{{action('GrandPrixController@show', ['id' => $gp->id])}}"><img src="{{$gp->flag()}}"></a> {{ $gp->name }} <span class="little">- {{ $gp->date }} </span></h1>
+                <h1 class="gp_h1"><a href="{{action('GrandPrixController@show', ['id' => $gp->id])}}"><img src="{{$gp->flag()}}"></a> {{ $gp->name }} <span class="little">- {{ $gp->date }} </span> </h1>
+
                 <h2 id="timer" class="gp_h2">
                     <input id="betTime" type="hidden" value="{{$gp->betTime()->format('Y/m/d h:m:s')}}">
                 </h2>

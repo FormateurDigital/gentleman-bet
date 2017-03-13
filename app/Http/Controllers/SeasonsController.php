@@ -22,7 +22,7 @@ class SeasonsController extends Controller
 
         $season = Season::findOrFail($id);
         $gps = $season->gp;
-        return view('seasons/show')->withGps($gps);
+        return view('seasons/show')->withGps($gps)->withSeason($season);
     }
 
     public function showAll () {
