@@ -22,14 +22,21 @@ class GrandPrixController extends Controller
     public function show ($id) {
 
         $gp = GrandPrix::findOrFail($id);
+        $date = new Carbon($gp->date);
+        $lastDay = false;
+        if ($gp->betTime()->isToday())
+            $lastDay = true;
+        $date = $date->format('Y/m/d');
         $result = $gp->results()->where('user_id', \Auth::user()->id)->where('type', '!=', 'result')->first();
+
         if (isset($result->pole))
             $input["pole"] = $result->pole;
         for ($i = 1; $i <= 10; $i++) {
             if (isset($result->{'position' . $i}))
             $input["position" . $i] = (string)$result->{'position' . $i};
         }
-        return isset($input) ? view('grand_prixs/show')->withGp($gp)->withInput($input) : view('grand_prixs/show')->withGp($gp);
+        return isset($input) ? view('grand_prixs/show')->withGp($gp)->withInput($input)->withDate($date)->withLast($lastDay)
+            : view('grand_prixs/show')->withGp($gp)->withDate($date)->withLast($lastDay);
     }
 
     public function create () {

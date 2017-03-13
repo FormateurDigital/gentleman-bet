@@ -4,19 +4,19 @@
     <div class="container gp-show">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <h1 class="gp_h1"><a href="{{action('GrandPrixController@show', ['id' => $gp->id])}}"><img src="{{$gp->flag()}}"></a> {{ $gp->name }} <span class="little">- {{ $gp->date }} </span> </h1>
+                <h1 class="gp_h1"><a href="{{action('GrandPrixController@show', ['id' => $gp->id])}}"><img src="{{$gp->flag()}}"></a> {{ $gp->name }} <span class="little">- {{ $date }} </span> </h1>
 
-                <h2 id="timer" class="gp_h2">
-                    <input id="betTime" type="hidden" value="{{$gp->betTime()->format('Y/m/d h:m:s')}}">
+                <h2 id="timer" data-lastDay="{{$last}}" class="gp_h2">
+                    <input id="betTime" type="hidden" value="{{$gp->betTime()->format('Y/m/d')}}">
                 </h2>
                 <hr>
-                <h3>Circuits</h3>
-                <ol class="list-circuits">
+                <h3>Circuit</h3>
+                <ul class="list-circuits text-center" style="list-style-type:none;">
                     <li>{{$gp->info1}}</li>
                     <li>{{$gp->info2}}</li>
                     <li>{{$gp->info3}}</li>
                     <li>{{$gp->info4}}</li>
-                </ol>
+                </ul>
                 @if (!$gp->betable())
                     <hr>
                     <h3><a href="{{action('ResultsController@show', ['gp'=> $gp->id])}}">Pronos & Résultats</a></h3>
@@ -120,7 +120,11 @@
         //TImer
         var betTime = $('#betTime').val();
         $('#timer').countdown(betTime, function(event) {
-            $(this).html(event.strftime('%D jours %Hh:%Mm:%Ss'));
+            if ($('#timer').data('lastday')) {
+                $('#timer').text("Dernier Jour !");
+            }
+            else
+                $(this).html(event.strftime('%D jours'));
         });
 
         //Block the already selected option
