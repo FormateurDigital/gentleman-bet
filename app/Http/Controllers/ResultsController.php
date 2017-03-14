@@ -6,6 +6,7 @@ use App\GrandPrix;
 use App\Points;
 use App\Result;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
@@ -19,14 +20,22 @@ class ResultsController extends Controller
 
     public function bet ($gp_id, $user_id) {
         $gp = GrandPrix::findOrFail($gp_id);
+        $date = new Carbon($gp->date);
+        $lastDay = false;
+
+        if ($gp->betTime()->isToday())
+            $lastDay = true;
+
+        $date = $date->format('Y/m/d');
         $gps = $gp->season->gp->sortByDesc('date');
         $result = $gp->results()->where('user_id', $user_id)->first();
+
         if (!$result)
             $result = new Result();
         elseif (Input::get('type') == 'result') {
             $resultat = $gp->results()->where('type', 'result')->first();
             if ($resultat)
-                return view('grand_prixs/show')->withGp($gp)->withResultErrors('Vous avez deja annonce des resultats')->withInput(Input::all());
+                return view('grand_prixs/show')->withGp($gp)->withResultErrors('Vous avez deja annonce des resultats')->withInput(Input::all())->withDate($date)->withLast($lastDay);
             else
                 $result = new Result();
         }
@@ -79,7 +88,7 @@ class ResultsController extends Controller
 
         if (Input::get('type') === "result")
             $this->_calculate_points($gp);
-        return view('grand_prixs/show')->withGp($gp)->withValidation('Pari pris en compte !')->withInput(Input::all());
+        return view('grand_prixs/show')->withGp($gp)->withValidation('Pari pris en compte !')->withInput(Input::all())->withDate($date)->withLast($lastDay);
     }
 
     private function _calculate_position ($result, $bet, $position)

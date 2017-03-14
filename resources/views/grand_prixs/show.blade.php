@@ -4,7 +4,21 @@
     <div class="container gp-show">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <h1 class="gp_h1"><a href="{{action('GrandPrixController@show', ['id' => $gp->id])}}"><img src="{{$gp->flag()}}"></a> {{ $gp->name }} <span class="little">- {{ $date }} </span> </h1>
+                <h1 class="gp_h1">
+                    <a href="{{action('GrandPrixController@show', ['id' => $gp->id])}}">
+                        <img src="{{$gp->flag()}}">
+                    </a>
+                    {{ $gp->name }}
+                    <span class="little">
+                        - {{ $date }}
+                    </span>
+                    @if (\Auth::user()->role == "admin")
+                        <div class="pull-right">
+                            <a href="#" class="btn btn-info"><i class="fa fa-pencil" aria-hidden="true"></i></a>&nbsp;
+                            <a href="{{action("GrandPrixController@destroy", ["id" => $gp->id])}}" class="btn btn-danger" onclick="return confirm('Etes-vous sûr ?');"><i class="fa fa-trash" aria-hidden="true"></i></a>&nbsp;
+                        </div>
+                    @endif
+                </h1>
 
                 <h2 id="timer" data-lastDay="{{$last}}" class="gp_h2">
                     <input id="betTime" type="hidden" value="{{$gp->betTime()->format('Y/m/d')}}">

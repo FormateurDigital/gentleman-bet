@@ -11,7 +11,8 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     <!-- Styles -->
     <link href="{{asset('css/app.css')}}" rel="stylesheet">
-    <link rel="stylesheet" src="{{asset('/css/all.css')}}"></script>
+    <link rel="stylesheet" src="{{asset('/css/all.css')}}">
+    <script src="https://use.fontawesome.com/7544dde990.js"></script>
 
     <!-- Scripts -->
     <script>
@@ -39,7 +40,6 @@
                         F<FONT color="red">1 </FONT> Gentleman'<s></s> bet
                     </a>
                 </div>
-
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
@@ -57,7 +57,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right dropdown-container">
                         <!-- Authentication Links -->
-                        @if (isset($gp))
+                    @if (isset($gp))
                             <li>
                                 <a href="{{action('SeasonsController@show', ['id' => $gp->season->id])}}">Calendrier</a>
                             </li>
@@ -93,7 +93,6 @@
             </div>
         </nav>
         <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
-        <script type="text/javascript" src="{{asset('js/all.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/all.js')}}"></script>
         @yield('content')
     </div>

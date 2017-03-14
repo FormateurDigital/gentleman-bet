@@ -127,7 +127,7 @@
                     {{ Form::close() }}
                 @if (isset($gp))
                     <div class="col-md-9 col-md-offset-4">
-                        <a href="{{action('Gp_PiloteController@create', $gp)}}" class="btn btn-info" role="button">Selectionner vos Pilotes</a>
+                        <a href="{{action('Gp_PiloteController@create', $gp->id)}}" class="btn btn-info" role="button">Selectionner vos Pilotes</a>
                     </div>
                     </div>
                 @endif

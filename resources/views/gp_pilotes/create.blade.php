@@ -1,12 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
+    <script type="text/javascript" src="{{asset('js/checkBox.js')}}"></script>
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">Sélectionner les pilotes</div>
                     <div class="panel-body form-horizontal">
+                        <div class="pull-right">
+                            <button onclick="checkAll(true)" class="btn btn-primary">Check All</button>
+                            <br/>
+                            <br/>
+                            <button onclick="checkAll(false)" class="btn btn-warning">Uncheck All</button>
+
+                        </div>
                         {{ Form::open(['url' => action('Gp_PiloteController@store'), 'method' => 'POST', 'files' => true]) }}
                         {{ csrf_field() }}
 
@@ -14,8 +22,7 @@
 
                         <h2 class="col-md-offset-3">Pilotes :</h2>
 
-                            <div class="form-group{{ $errors->has('pilote') ? ' has-error' : '' }} col-pilote">
-
+                        <div class="form-group{{ $errors->has('pilote') ? ' has-error' : '' }} col-pilote">
                                 <div class="col-md-9">
                                     @forelse($pilotes as $pilote)
                                         <div class=" col-md-offset-5">
@@ -45,6 +52,7 @@
     </div>
 
     <script>
+
     </script>
 
 @endsection

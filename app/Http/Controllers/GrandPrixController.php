@@ -45,6 +45,24 @@ class GrandPrixController extends Controller
 
     }
 
+    public function destroy($id) {
+
+        $gp = GrandPrix::findOrFail($id);
+        $id = $gp->season->id;
+        $results = $gp->results;
+        foreach($results as $result) {
+            $point = $result->point;
+            if (isset($point))
+                $point->delete();
+            $result->delete();
+        }
+        foreach($gp->pilotes as $pilote) {
+            $pilote->pivot->delete();
+        }
+        $gp->delete();
+        return redirect()->action("SeasonsController@show", ["id" => $id]);
+    }
+
     public function updatePilotes ($id) {
         $gp = GrandPrix::findOrFail($id);
         $pilotes = Pilote::all();
@@ -60,7 +78,7 @@ class GrandPrixController extends Controller
                 $gp->save();
             }
         }
-        return redirect()->action('GrandPrixController@show', ['id' => $gp->id]);
+        return redirect()->action('GrandPrixController@show', ['id' => $gp]);
     }
 
     public function store (Request $request) {
@@ -87,6 +105,6 @@ class GrandPrixController extends Controller
         $gp->info4 = Input::get('info4');
         $gp->season()->associate($season);
         $gp->save();
-        return view('/grand_prixs/create')->withGp($gp->id)->withSeason(Input::get('season'));
+        return view('/grand_prixs/create')->withGp($gp)->withSeason(Input::get('season'));
     }
 }
