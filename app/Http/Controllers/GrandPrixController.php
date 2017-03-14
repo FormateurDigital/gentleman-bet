@@ -39,10 +39,46 @@ class GrandPrixController extends Controller
             : view('grand_prixs/show')->withGp($gp)->withDate($date)->withLast($lastDay);
     }
 
-    public function create () {
+    public function create ($season_id) {
 
-        return view('/grand_prixs/create');
+        return view('/grand_prixs/create')->withSeason($season_id)->withNew(true);
 
+    }
+
+    public function updateRedirect ($id) {
+
+        $gp = GrandPrix::findOrFail($id);
+        return view("grand_prixs/update")->withGp($gp);
+    }
+
+    public function update ($id) {
+
+        $gp = GrandPrix::findOrFail($id);
+        $name = Input::get('name');
+        $date = Input::get('date');
+        $flag = Input::file('avatar');
+        $info1 = Input::get('info1');
+        $info2 = Input::get('info2');
+        $info3 = Input::get('info3');
+        $info4 = Input::get('info4');
+
+        if (isset($name))
+            $gp->name = $name;
+        if (isset($date))
+            $gp->date = $date;
+        if (isset($flag))
+            $gp->avatar = $flag;
+        if (isset($info1))
+            $gp->info1 = $info1;
+        if (isset($info2))
+            $gp->info2 = $info2;
+        if (isset($info3))
+            $gp->info3 = $info3;
+        if (isset($info4))
+            $gp->info4 = $info4;
+        $gp->save();
+
+        return redirect()->action("GrandPrixController@show", ["id" => $gp->id]);
     }
 
     public function destroy($id) {
@@ -94,6 +130,7 @@ class GrandPrixController extends Controller
         ]);
 
         $season = Season::findOrFail(Input::get('season'));
+        $new = Input::get('new');
 
         $gp = new GrandPrix();
         $gp->name = Input::get('name');
@@ -105,6 +142,8 @@ class GrandPrixController extends Controller
         $gp->info4 = Input::get('info4');
         $gp->season()->associate($season);
         $gp->save();
-        return view('/grand_prixs/create')->withGp($gp)->withSeason(Input::get('season'));
+        if (!$new)
+            return view('/grand_prixs/create')->withGp($gp)->withSeason(Input::get('season'));
+        return redirect()->action("SeasonsController@show", ["id" => $season->id]);
     }
 }

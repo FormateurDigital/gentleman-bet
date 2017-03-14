@@ -31,8 +31,10 @@ Route::group(['prefix' => 'seasons'], function () {
 
 Route::group(['prefix' => 'grandPrixs'], function () {
     Route::group(['middleware' => 'checkRole'], function () {
-        Route::get('/create', 'GrandPrixController@create');
+        Route::get('{season_id}/create', 'GrandPrixController@create');
         Route::get('/updatePilotes/{id}', 'GrandPrixController@updatePilotes');
+        Route::get('/updateRedirect/{id}', 'GrandPrixController@updateRedirect');
+        Route::post('/update/{id}', 'GrandPrixController@update');
         Route::post('/storePilotes/{id}', 'GrandPrixController@storePilotes');
         Route::post('/store', 'GrandPrixController@store');
         Route::get('/destroy/{id}', 'GrandPrixController@destroy');

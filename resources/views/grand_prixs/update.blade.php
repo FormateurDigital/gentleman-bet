@@ -8,21 +8,20 @@
                     <div class="panel-heading">Ajouter des Grands Prix</div>
                 </div>
                     <div class="panel-body">
-                        {{ Form::open(['url' => action('GrandPrixController@store'), 'method' => 'POST', 'files' => true]) }}
+                        {{ Form::open(['url' => action('GrandPrixController@update', ["id" => $gp->id]), 'method' => 'POST', 'files' => true]) }}
                         {{ csrf_field() }}
 
-                        <input id="season" type="hidden" class="form-control" name="season" value="{{ $season }}">
-                        <input id="new" type="hidden" class="form-control" name="new" value="{{ $new }}">
+                        <input id="season" type="hidden" class="form-control" name="season" value="{{ $gp->season }}">
 
                         <h3>
-                            Creation de Grand Prix
+                            Modification de Grand Prix
                         </h3>
                         <div class="form-horizontal">
                         <div class="form-group row{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-3 control-label">Nom</label>
 
                             <div class="col-md-9">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+                                <input id="name" type="text" class="form-control" name="name" value="{{ $gp->name }}" required autofocus>
 
                                 @if ($errors->has('name'))
                                     <span class="help-block">
@@ -50,7 +49,7 @@
                             <label for="date" class="col-md-3 control-label">Date</label>
 
                             <div class="col-md-9">
-                                <input id="date" type="text" class="form-control" name="date" value="{{ old('date') }}" required >
+                                <input id="date" type="text" class="form-control" name="date" value="{{ $gp->date }}" required >
 
                                 @if ($errors->has('date'))
                                     <span class="help-block">
@@ -64,7 +63,7 @@
                             <label for="info1" class="col-md-3 control-label">Info circuit 1</label>
 
                             <div class="col-md-9">
-                                <input id="info1" type="text" class="form-control" name="info1" value="{{ old('info1') }}" required >
+                                <input id="info1" type="text" class="form-control" name="info1" value="{{$gp->info1}}" required >
 
                                 @if ($errors->has('info1'))
                                     <span class="help-block">
@@ -78,7 +77,7 @@
                             <label for="info2" class="col-md-3 control-label">Info circuit 2</label>
 
                             <div class="col-md-9">
-                                <input id="info2" type="text" class="form-control" name="info2" value="{{ old('info2') }}" required >
+                                <input id="info2" type="text" class="form-control" name="info2" value="{{$gp->info2}}" required >
 
                                 @if ($errors->has('info2'))
                                     <span class="help-block">
@@ -92,7 +91,7 @@
                             <label for="info3" class="col-md-3 control-label">Info circuit 3</label>
 
                             <div class="col-md-9">
-                                <input id="info3" type="text" class="form-control" name="info3" value="{{ old('info3') }}" required >
+                                <input id="info3" type="text" class="form-control" name="info3" value="{{$gp->info3}}" required >
 
                                 @if ($errors->has('info3'))
                                     <span class="help-block">
@@ -106,7 +105,7 @@
                             <label for="info4" class="col-md-3 control-label">Info circuit 4</label>
 
                             <div class="col-md-9">
-                                <input id="info4" type="text" class="form-control" name="info4" value="{{ old('info4') }}" required >
+                                <input id="info4" type="text" class="form-control" name="info4" value="{{$gp->info4}}" required >
 
                                 @if ($errors->has('info4'))
                                     <span class="help-block">
@@ -126,12 +125,6 @@
                     </div>
 
                     {{ Form::close() }}
-                @if (isset($gp))
-                    <div class="col-md-9 col-md-offset-4">
-                        <a href="{{action('Gp_PiloteController@create', $gp->id)}}" class="btn btn-info" role="button">Selectionner vos Pilotes</a>
-                    </div>
-                    </div>
-                @endif
                 </div>
             </div>
         </div>

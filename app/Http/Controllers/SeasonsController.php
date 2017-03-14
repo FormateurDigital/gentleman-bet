@@ -61,6 +61,6 @@ class SeasonsController extends Controller
             'name'      => 'required | string'
         ]);
         $season = Season::create(Input::all());
-        return view('/grand_prixs/create')->withSeason($season->id);
+        return view('/grand_prixs/create')->withSeason($season->id)->withNew(false);
     }
 }

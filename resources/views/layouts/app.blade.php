@@ -94,6 +94,8 @@
         </nav>
         <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/all.js')}}"></script>
+        <link href="{{asset('css/bootstrap-editable.css')}}" rel="stylesheet"/>
+        <script src="{{asset('js/bootstrap-editable.js')}}"></script>
         @yield('content')
     </div>
 
