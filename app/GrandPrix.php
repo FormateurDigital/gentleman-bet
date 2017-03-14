@@ -27,7 +27,7 @@ class GrandPrix extends Model implements StaplerableInterface {
 
     public function flag () {
 
-        return '/public/' . $this->avatar->url();
+        return $this->avatar->url();
     }
 
     public function betable () {
