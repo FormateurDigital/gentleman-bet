@@ -143,7 +143,7 @@ class GrandPrixController extends Controller
         $gp->season()->associate($season);
         $gp->save();
         if (!$new)
-            return view('/grand_prixs/create')->withGp($gp)->withSeason(Input::get('season'));
+            return view('/grand_prixs/create')->withGp($gp)->withSeason(Input::get('season'))->withNew('false');
         return redirect()->action("SeasonsController@show", ["id" => $season->id]);
     }
 }
