@@ -10,7 +10,6 @@
                         <th>Rang</th>
                         <th>Pronostiqueurs</th>
                         <th>TOTAL</th>
-                        <th>Pole</th>
                         <th>Podium</th>
                         <th>Diumpo</th>
                         <th>Duo</th>
@@ -50,7 +49,6 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td></td>
                                 <td>{{isset($id_pilotes[$result->pole]) ? $id_pilotes[$result->pole] : "---"}}</td>
                                 <td>{{isset($id_pilotes[$result->position1]) ? $id_pilotes[$result->position1] : "---"}}</td>
                                 <td>{{isset($id_pilotes[$result->position2]) ? $id_pilotes[$result->position2] : "---"}}</td>
@@ -74,7 +72,6 @@
                                         <td></td>
                                         <td></td>
                                         <td>{{isset($result->point) ? $result->point->total : ""}}</td>
-                                        <td>{{isset($result->point) ? $result->point->pole : ""}}</td>
                                         <td>{{isset($result->point) ? $result->point->podium : ""}}</td>
                                         <td>{{isset($result->point) ? $result->point->diumpo : ""}}</td>
                                         <td>{{isset($result->point) ? $result->point->duo : ""}}</td>

@@ -166,7 +166,6 @@
 
         elems.change(function () {
             $("option[value=" + $(this)[0].dataset.old + "]").removeAttr("disabled");
-            console.log($(this)[0].dataset.old);
             $(this)[0].dataset.old = $(this).val();
             for (var item of elems.not($(this))) {
                 $("select[name=" + item.name + "] option[value=" + $(this).val() + "]").attr("disabled", "disabled");
