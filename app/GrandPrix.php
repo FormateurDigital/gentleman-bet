@@ -56,6 +56,8 @@ class GrandPrix extends Model implements StaplerableInterface {
                 'medium' => '300x300',
                 'thumb' => '100x100'
             ],
+	    'url' => '/system/:attachment/:id_partition/:style/:filename',
+	    'path' => ':app_root/www/system/:attachment/:id_partition/:style/:filename'
         ]);
 
         parent::__construct($attributes);
