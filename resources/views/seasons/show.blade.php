@@ -20,7 +20,7 @@
                     <td>
                         <a href="{{action('GrandPrixController@show', ['id' => $gp->id])}}"><img style="height: 30px" src="{{'' . $gp->flag()}}">  {{$gp->name}}</a></td>
                     <td>
-                        {{$gp->date}}
+                        {{$gp->betterDate()}}
                         @if (\Auth::user()->role == "admin")
                             <div class="pull-right">
                                 <a href="{{action("GrandPrixController@updateRedirect", ["id" => $gp->id])}}" class="btn btn-info"><i class="fa fa-pencil" aria-hidden="true"></i></a>

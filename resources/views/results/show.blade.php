@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <h1 class="gp_h1"><a href="{{action('GrandPrixController@show', ['id' => $gp->id])}}"><img src="{{$gp->flag()}}"></a>{{ $gp->name }} <span class="little">- {{ $gp->date }}</span></h1>
+            <h1 class="gp_h1"><a href="{{action('GrandPrixController@show', ['id' => $gp->id])}}"><img src="{{$gp->flag()}}"></a>{{ $gp->name }} <span class="little">- {{ $gp->betterDate() }}</span></h1>
             <table class="table">
                 <thead>
                    <tr>
