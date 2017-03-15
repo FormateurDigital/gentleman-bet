@@ -27,7 +27,7 @@ class ResultsController extends Controller
             $lastDay = true;
 
         $date = $date->format('Y/m/d');
-        $gps = $gp->season->gp->sortByDesc('date');
+        $gps = $gp->season->gp->sortBy('date');
         $result = $gp->results()->where('user_id', $user_id)->first();
 
         if (!$result)
