@@ -37,7 +37,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        F<FONT color="red">1 </FONT> Gentleman'<s></s> bet
+                        F<FONT color="red">1 </FONT> Gentleman's bet
                     </a>
                 </div>
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
