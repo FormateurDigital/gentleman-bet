@@ -105,10 +105,11 @@ class ResultsController extends Controller
             $abs = abs($position - $i);
             if ($abs == 1)
                 return 18;
+            elseif ($abs > 5)
+                return 0;
             else
-                return 20 - (2 * $abs);
+                return 22 - (4 * $abs);
         }
-
     }
 
     private function _calculate_points($gp) {
