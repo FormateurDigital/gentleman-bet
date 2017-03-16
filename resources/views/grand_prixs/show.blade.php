@@ -167,9 +167,10 @@
         elems.change(function () {
             $("option[value=" + $(this)[0].dataset.old + "]").removeAttr("disabled");
             $(this)[0].dataset.old = $(this).val();
-            for (var item of elems.not($(this))) {
-                $("select[name=" + item.name + "] option[value=" + $(this).val() + "]").attr("disabled", "disabled");
-            }
+            val = $(this).val();
+            $.each(elems.not($(this)), function (index, item){
+                $("select[name=" + item.name + "] option[value=" + val + "]").attr("disabled", "disabled");
+            });
             var position = $(this).attr("id");
             var option = $(this).find("option[value=" + $(this).val() + "]");
             $("#text-" + position).html("(" + option[0].dataset.stable +  ") - " + option[0].dataset.name);
