@@ -25,6 +25,11 @@ class GrandPrix extends Model implements StaplerableInterface {
         return $this->belongsToMany('App\Pilote');
     }
 
+    public function betterDate() {
+        $date = new Carbon($this->date);
+        return $date->format("Y/m/d");
+    }
+
     public function flag () {
 
         return $this->avatar->url();
