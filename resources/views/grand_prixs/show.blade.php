@@ -144,25 +144,25 @@
         //Block the already selected option
         elems = $("select").not("#pole");
 
-        for (var item of elems) {
-            for (var child of item.children) {
+        $.each(elems, function (id, item) {
+            $.each(item.children, function (index, child) {
                 if (item.dataset.selected == "")
                     $(item).prop("selectedIndex", -1);
                 else if (child.value == item.dataset.selected) {
                     $(child).attr("selected", true);
                     $(item).attr("data-old", $(child).val());
                 }
-            }
+            });
             if (item.value != "") {
                 var position = item.id;
                 var option = $('option[value=' + item.value + ']').first();
                 $("#text-" + position).html("(" + option[0].dataset.stable + ") - " + option[0].dataset.name);
 
-                for (var elem of elems.not($(item))) {
+                $.each(elems.not($(item)), function (index, elem) {
                     $("select[name=" + elem.name + "] option[value=" + item.value + "]").attr("disabled", "disabled");
-                }
+                })
             }
-        }
+        });
 
         elems.change(function () {
             $("option[value=" + $(this)[0].dataset.old + "]").removeAttr("disabled");
