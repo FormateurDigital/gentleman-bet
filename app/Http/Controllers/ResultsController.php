@@ -103,7 +103,10 @@ class ResultsController extends Controller
                     return 0;
             }
             $abs = abs($position - $i);
-            return 20 - (2 * $abs);
+            if ($abs > 9)
+                return 0;
+            else
+                return 20 - (2 * $abs);
         }
     }
 
