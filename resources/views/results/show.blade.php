@@ -29,19 +29,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse($results as $result)
-                        @if($result->type == "result")
+                    @forelse($bets as $bet)
+                        @if($bet->type == "result")
                             <tr class="alert alert-warning">
                                 <td></td>
                                 <td>Résultat</td>
-                        @elseif($result->user->id == \Auth::user()->id)
+                        @elseif($bet->user->id == \Auth::user()->id)
                             <tr class="alert alert-info">
                                 <td>{{$loop->index}}</td>
-                                <td>{{$result->user->name}}</td>
+                                <td>{{$bet->user->name}}</td>
                         @else
                             <tr>
                                 <td>{{$loop->index}}</td>
-                                <td>{{$result->user->name}}</td>
+                                <td>{{$bet->user->name}}</td>
                         @endif
                                 <td></td>
                                 <td></td>
@@ -49,37 +49,37 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td>{{isset($id_pilotes[$result->pole]) ? $id_pilotes[$result->pole] : "---"}}</td>
-                                <td>{{isset($id_pilotes[$result->position1]) ? $id_pilotes[$result->position1] : "---"}}</td>
-                                <td>{{isset($id_pilotes[$result->position2]) ? $id_pilotes[$result->position2] : "---"}}</td>
-                                <td>{{isset($id_pilotes[$result->position3]) ? $id_pilotes[$result->position3] : "---"}}</td>
-                                <td>{{isset($id_pilotes[$result->position4]) ? $id_pilotes[$result->position4] : "---"}}</td>
-                                <td>{{isset($id_pilotes[$result->position5]) ? $id_pilotes[$result->position5] : "---"}}</td>
-                                <td>{{isset($id_pilotes[$result->position6]) ? $id_pilotes[$result->position6] : "---"}}</td>
-                                <td>{{isset($id_pilotes[$result->position7]) ? $id_pilotes[$result->position7] : "---"}}</td>
-                                <td>{{isset($id_pilotes[$result->position8]) ? $id_pilotes[$result->position8] : "---"}}</td>
-                                <td>{{isset($id_pilotes[$result->position9]) ? $id_pilotes[$result->position9] : "---"}}</td>
-                                <td>{{isset($id_pilotes[$result->position10]) ? $id_pilotes[$result->position10] : "---"}}</td>
+                                <td>{{isset($id_pilotes[$bet->pole][0]) ? $id_pilotes[$bet->pole][0] : "---"}}</td>
+                                <td>{{isset($id_pilotes[$bet->position1][0]) ? $id_pilotes[$bet->position1][0] : "---"}}</td>
+                                <td>{{isset($id_pilotes[$bet->position2][0]) ? $id_pilotes[$bet->position2][0] : "---"}}</td>
+                                <td>{{isset($id_pilotes[$bet->position3][0]) ? $id_pilotes[$bet->position3][0] : "---"}}</td>
+                                <td>{{isset($id_pilotes[$bet->position4][0]) ? $id_pilotes[$bet->position4][0] : "---"}}</td>
+                                <td>{{isset($id_pilotes[$bet->position5][0]) ? $id_pilotes[$bet->position5][0] : "---"}}</td>
+                                <td>{{isset($id_pilotes[$bet->position6][0]) ? $id_pilotes[$bet->position6][0] : "---"}}</td>
+                                <td>{{isset($id_pilotes[$bet->position7][0]) ? $id_pilotes[$bet->position7][0] : "---"}}</td>
+                                <td>{{isset($id_pilotes[$bet->position8][0]) ? $id_pilotes[$bet->position8][0] : "---"}}</td>
+                                <td>{{isset($id_pilotes[$bet->position9][0]) ? $id_pilotes[$bet->position9][0] : "---"}}</td>
+                                <td>{{isset($id_pilotes[$bet->position10][0]) ? $id_pilotes[$bet->position10][0] : "---"}}</td>
 
                             </tr>
 
-                            @if($result->type != "result")
-                                @if ($result->user->id == \Auth::user()->id)
+                            @if($bet->type != "result")
+                                @if ($bet->user->id == \Auth::user()->id)
                                     <tr class="alert alert-info">
                                 @else
                                     <tr>
                                 @endif
                                         <td></td>
                                         <td></td>
-                                        <td>{{isset($result->point) ? $result->point->total : ""}}</td>
-                                        <td>{{isset($result->point) ? $result->point->podium : ""}}</td>
-                                        <td>{{isset($result->point) ? $result->point->diumpo : ""}}</td>
-                                        <td>{{isset($result->point) ? $result->point->duo : ""}}</td>
-                                        <td>{{isset($result->point) ? $result->point->udo : ""}}</td>
-                                        <td>{{isset($result->point) ? $result->point->vainq : ""}}</td>
-                                        <td>{{isset($result->point) ? $result->point->pole : ""}}</td>
+                                        <td>{{isset($bet->point) ? $bet->point->total : ""}}</td>
+                                        <td>{{isset($bet->point) ? $bet->point->podium : ""}}</td>
+                                        <td>{{isset($bet->point) ? $bet->point->diumpo : ""}}</td>
+                                        <td>{{isset($bet->point) ? $bet->point->duo : ""}}</td>
+                                        <td>{{isset($bet->point) ? $bet->point->udo : ""}}</td>
+                                        <td>{{isset($bet->point) ? $bet->point->vainq : ""}}</td>
+                                        <td>{{isset($bet->point) ? $bet->point->pole : ""}}</td>
                                         @for ($i = 1; $i <= 10; $i++)
-                                            <td>{{isset($result->point) ? $result->point->{"position" .  $i} : "" }}</td>
+                                            <td>{{isset($bet->point) ? $bet->point->{$id_pilotes[$bet->{"position".$i}][1]} : "" }}</td>
                                         @endfor
                                     </tr>
                             @endif

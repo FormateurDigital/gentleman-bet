@@ -96,13 +96,17 @@ class ResultsController extends Controller
         if ($result->{'position' . $position} == $bet->{'position' . $position})
             return 25;
         else {
-            $i = 1;
-            while ($result->{'position' . $position} != $bet->{'position' . $i}) {
-                $i++;
-                if ($i == 11)
-                    return 0;
-            }
+            for ($i = 1; $i < 11 && $bet->{'position'.$i} != $result->{'position'.$position}; $i++);
+
             $abs = abs($position - $i);
+
+            if ($position == 10) {
+                \Log::error("RESULT - POSITION : $position || " . $result->{'position'.$position});
+                \Log::error("BET - POSITION : $i || " . $bet->{'position'.$i});
+                \Log::error("ABS : $abs");
+                \Log::error("POINTS : " . (20 - (2 * $abs)));
+            }
+
             if ($abs > 9)
                 return 0;
             else
@@ -118,7 +122,8 @@ class ResultsController extends Controller
         foreach ($bets as $bet) {
             $point = new Points();
             $total = 0;
-            for ($i = 1; $i <= 10; $i++) {
+            for ($i = 1; $i < 11; $i++) {
+                \Log::error("BET EXT: " . $bet->{'position' . $i} . " || I : $i");
                 $point->{'position' . $i} = $this->_calculate_position($result, $bet, $i);
                 $total += $point->{'position' . $i};
             }
@@ -167,15 +172,21 @@ class ResultsController extends Controller
                 return ($elem->point->total);
             });
         }
-        $results = $gp->results->sortByDesc(function ($elem) {
+        $bets = $gp->results->sortByDesc(function ($elem) {
             return ($elem->type);
         });
 
-        $pilotes = $gp->pilotes;
-        $id_pilotes = array();
-        foreach ($pilotes as $pilote)
-            $id_pilotes[$pilote->id] = $pilote->acronym;
+        $result = $result = $gp->results->where('type', 'result')->first();
 
-        return view('results/show')->withResults($results)->withGp($gp)->withIdPilotes($id_pilotes);
+        $pilotes = $gp->pilotes;
+        $id_pilotes = array(array());
+        foreach ($pilotes as $pilote) {
+            $id_pilotes[$pilote->id][0] = $pilote->acronym;
+            for ($i = 1; $i < 11; $i++) {
+                if ($result->{"position" . $i} == $pilote->id)
+                    $id_pilotes[$pilote->id][1] = "position$i";
+            }
+        }
+        return view('results/show')->withBets($bets)->withGp($gp)->withIdPilotes($id_pilotes)->withResult($result);
     }
 }
