@@ -183,7 +183,7 @@ class ResultsController extends Controller
         foreach ($pilotes as $pilote) {
             $id_pilotes[$pilote->id][0] = $pilote->acronym;
             for ($i = 1; $i < 11; $i++) {
-                if ($result->{"position" . $i} == $pilote->id)
+                if (isset($result) && $result->{"position" . $i} == $pilote->id)
                     $id_pilotes[$pilote->id][1] = "position$i";
             }
         }
