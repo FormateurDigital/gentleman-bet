@@ -57,12 +57,19 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right dropdown-container">
                         <!-- Authentication Links -->
-                    @if (isset($gp))
+                        @if (isset($gp))
                             <li>
                                 <a href="{{action('SeasonsController@show', ['id' => $gp->season->id])}}">Calendrier</a>
                             </li>
                             <li>
                                 <a href="{{action('SeasonsController@showResults', ['id' => $gp->season->id])}}">Classement</a>
+                            </li>
+                        @elseif(isset($last))
+                            <li>
+                                <a href="{{action('SeasonsController@show', ['id' => $last->season->id])}}">Calendrier</a>
+                            </li>
+                            <li>
+                                <a href="{{action('SeasonsController@showResults', ['id' => $last->season->id])}}">Classement</a>
                             </li>
                         @endif
                         @if (Auth::guest())
