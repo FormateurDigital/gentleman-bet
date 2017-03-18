@@ -167,6 +167,7 @@ class ResultsController extends Controller
     public function show ($gp_id)
     {
         $gp = GrandPrix::findOrFail($gp_id);
+        $bets = collect();
         foreach ($gp->results as $res) {
             if (isset($res->point))
                 $bets = $gp->results
