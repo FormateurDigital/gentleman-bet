@@ -75,8 +75,7 @@
                     </div>
                 <br><br>
                 </div>
-
-                @for($i = 1; $i <= 10; $i++)
+            @for($i = 1; $i <= 10; $i++)
                     <div class="row row-pilote form-horizontal form-group{{ $errors->has('position'.$i) ? ' has-error' : '' }}">
                         <label for="{{'position'.$i}}" class="col-md-5 control-label">{{$i}}</label>
                             <div class="col-md-2">
@@ -145,14 +144,16 @@
         elems = $("select").not("#pole");
 
         $.each(elems, function (id, item) {
+            //
             $.each(item.children, function (index, child) {
                 if (item.dataset.selected == "")
                     $(item).prop("selectedIndex", -1);
                 else if (child.value == item.dataset.selected) {
-                    $(child).attr("selected", true);
+                    $(item).prop("selectedIndex", index);
                     $(item).attr("data-old", $(child).val());
                 }
             });
+            //
             if (item.value != "") {
                 var position = item.id;
                 var option = $('option[value=' + item.value + ']').first();
@@ -164,6 +165,7 @@
             }
         });
 
+        //On change, block the selected value in other field, display name and clear previous value
         elems.change(function () {
             $("option[value=" + $(this)[0].dataset.old + "]").removeAttr("disabled");
             $(this)[0].dataset.old = $(this).val();
