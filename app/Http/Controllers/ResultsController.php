@@ -63,7 +63,7 @@ class ResultsController extends Controller
                 $pos = $index;
         }
         if (Input::get('type') != 'result') {
-            for ($i = $index; $i < count($gps); $i++) {
+            for ($i = $pos; $i < count($gps); $i++) {
                 $res = $gps[$i]->results()->where('type', 'bet')->where('user_id', $user_id)->first();
                 if (!$res)
                     $res = new Result();
