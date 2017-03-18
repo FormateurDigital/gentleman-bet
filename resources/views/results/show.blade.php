@@ -79,7 +79,7 @@
                                         <td>{{isset($bet->point) ? $bet->point->vainq : ""}}</td>
                                         <td>{{isset($bet->point) ? $bet->point->pole : ""}}</td>
                                         @for ($i = 1; $i <= 10; $i++)
-                                            <td>{{isset($bet->point) ? $bet->point->{$id_pilotes[$bet->{"position".$i}][1]} : "" }}</td>
+                                            <td>{{isset($bet->point) && isset($id_pilotes[$bet->{"position".$i}][1]) ? $bet->point->{$id_pilotes[$bet->{"position".$i}][1]} : "0" }}</td>
                                         @endfor
                                     </tr>
                             @endif
