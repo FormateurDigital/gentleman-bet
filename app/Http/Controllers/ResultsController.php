@@ -168,7 +168,7 @@ class ResultsController extends Controller
     {
         $gp = GrandPrix::findOrFail($gp_id);
         if (isset($gp->results->point)) {
-            $results = $gp->results->sortByDesc(function ($elem) {
+            $bet = $gp->results->sortByDesc(function ($elem) {
                 return ($elem->point->total);
             });
         }
