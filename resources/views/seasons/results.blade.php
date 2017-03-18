@@ -11,7 +11,13 @@
                     <th>Pronostiqueurs</th>
                     <th>TOTAL</th>
                     @forelse($gps as $gp)
-                        <th><a href="{{action('ResultsController@show', ['gp'=> $gp->id])}}">{{$gp->name}}</a></th>
+                        <th>
+                            @if (!$gp->betable())
+                                <a href="{{action('ResultsController@show', ['gp'=> $gp->id])}}">{{$gp->name}}</a>
+                            @else
+                                {{$gp->name}}
+                            @endif
+                        </th>
                     @empty
                     @endforelse
                 </tr>
