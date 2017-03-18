@@ -168,14 +168,14 @@ class ResultsController extends Controller
     {
         $gp = GrandPrix::findOrFail($gp_id);
         if (isset($gp->results->point)) {
-            $bet = $gp->results->sortByDesc(function ($elem) {
+            $bets = $gp->results->sortByDesc(function ($elem) {
                 return ($elem->point->total);
             });
         }
         $bets = $gp->results->sortByDesc(function ($elem) {
             return ($elem->type);
         });
-
+        
         $result = $result = $gp->results->where('type', 'result')->first();
 
         $pilotes = $gp->pilotes;
