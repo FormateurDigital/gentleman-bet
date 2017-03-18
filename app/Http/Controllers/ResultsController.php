@@ -167,15 +167,15 @@ class ResultsController extends Controller
     public function show ($gp_id)
     {
         $gp = GrandPrix::findOrFail($gp_id);
-        if (isset($gp->results->point)) {
-            $bets = $gp->results->sortByDesc(function ($elem) {
-                return ($elem->point->total);
-            });
+        foreach ($gp->results as $res) {
+            if (isset($res->point))
+                $bets = $gp->results
+                    ->sortBy(function ($elem) {return ($elem->point->total);})
+                    ->sortByDesc(function ($elem) {return ($elem->type);});
+            else
+                $bets = $gp->results;
         }
-        $bets = $gp->results->sortByDesc(function ($elem) {
-            return ($elem->type);
-        });
-        
+
         $result = $result = $gp->results->where('type', 'result')->first();
 
         $pilotes = $gp->pilotes;
