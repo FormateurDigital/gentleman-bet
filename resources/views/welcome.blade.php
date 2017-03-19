@@ -43,7 +43,7 @@
                                     @endif
                                         <!--<a class="red" href="#">Classement</a>-->
                                         <a href="{{action('SeasonsController@showAll')}}">Historique</a>
-                                        <a class="green" href="#">Réglement</a>
+                                        <a class="green" href="{{url("reglement")}}">Réglement</a>
                                     </div>
                                 </div>
                             </div>
