@@ -54,6 +54,7 @@ Route::group(['prefix' => 'pilotes'], function () {
         Route::get('/create', 'PilotesController@create');
         Route::post('/store', 'PilotesController@store');
     });
+    Route::get("show", "PilotesController@show");
 });
 
 Route::group(['prefix' => 'stables'], function () {

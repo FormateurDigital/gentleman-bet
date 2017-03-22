@@ -22,6 +22,12 @@ class PilotesController extends Controller
 
     }
 
+    public function show () {
+
+        $pilotes = Pilote::all()->sortBy("stable_id");
+        return view("/pilotes/show")->withPilotes($pilotes);
+    }
+
     public function store (Request $request) {
 
         $this->validate($request, [

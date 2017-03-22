@@ -43,6 +43,7 @@
                                     @endif
                                         <!--<a class="red" href="#">Classement</a>-->
                                         <a href="{{action('SeasonsController@showAll')}}">Historique</a>
+                                        <a style="background-color: #e79441;" href="{{action('PilotesController@show')}}">Pilotes</a>
                                         <a class="green" href="{{url("reglement")}}">Réglement</a>
                                     </div>
                                 </div>
