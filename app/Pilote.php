@@ -19,6 +19,11 @@ class Pilote extends Model implements StaplerableInterface
         return $this->belongsTo('App\Stable');
     }
 
+    public function avatar () {
+
+        return "www" . $this->avatar->url();
+    }
+
     public function gp () {
 
         return $this->belongsToMany('App\GrandPrix');

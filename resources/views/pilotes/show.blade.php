@@ -8,22 +8,22 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th>Ecuries</th>
                         <th>Pilotes</th>
                         <th>Trigrammes</th>
+                        <th>Ecuries</th>
                     </tr>
                     </thead>
                     <tbody>
                         @forelse($pilotes as $pilote)
                             <tr>
                                 <td>
-                                    {{$pilote->stable->name}}
-                                </td>
-                                <td>
-                                    {{$pilote->name}}
+                                    <img style="height: 30px" src="{{'/' . $pilote->avatar()}}">&nbsp;&nbsp;&nbsp;&nbsp;{{$pilote->name}}
                                 </td>
                                 <td>
                                     {{$pilote->acronym}}
+                                </td>
+                                <td>
+                                    {{$pilote->stable->name}}
                                 </td>
                             </tr>
                         @empty
