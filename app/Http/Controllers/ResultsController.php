@@ -160,6 +160,8 @@ class ResultsController extends Controller
                     $point->udo = 30;
             elseif ($bet->position1 == $result->position2 && $bet->position2 == $result->position3 && $bet->position3 == $result->position1)
                 $point->diumpo = 50;
+            elseif ($bet->position2 == $result->position1 && $bet->position3 == $result->position2 && $bet->position1 == $result->position3)
+                $point->diumpo = 50;
             $point->total = $total + $point->pole + $point->podium + $point->diumpo + $point->duo + $point->udo + $point->vainq;
             $bet->point()->save($point);
         }
