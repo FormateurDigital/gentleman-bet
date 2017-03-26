@@ -19,7 +19,6 @@
                         </div>
                     @endif
                 </h1>
-
                 <h2 id="timer" data-lastDay="{{$last}}" class="gp_h2">
                     <input id="betTime" type="hidden" value="{{$gp->betTime()->format('Y/m/d')}}">
                 </h2>
@@ -138,7 +137,7 @@
                 $('#timer').text("Dernier Jour !");
             }
             else
-                $(this).html(event.strftime('%D jours'));
+                $(this).html(event.strftime('Fin des pronos dans : %D jours'));
         });
 
         //Block the already selected option
