@@ -56,6 +56,7 @@
                     <label for="pole" class="col-md-5 control-label">Pole position</label>
 
                     <div class="col-md-2">
+                        <input name="check" type="hidden" value="{{\Auth::user()->role == "admin" && !$gp->betable() ? "false" : "true"}}">
                         <select {{ ($gp->betable() || \Auth::user()->role == "admin") ?  " " : "disabled"}} id="pole" type="text" class="form-control" name="pole" data-selected="{{isset($input) ? $input["pole"] : ""}}" required >
                             @forelse($gp->pilotes as $pilote)
                                 <option name="pole" value="{{$pilote->id}}" data-stable="{{$pilote->stable->name}}" data-name="{{$pilote->name  }}">
@@ -141,7 +142,9 @@
         });
 
         //Block the already selected option
-        elems = $("select").not("#pole");
+        if ($("input[name='check']").val() == "true") {
+            elems = $("select").not("#pole");
+        }
 
         $.each(elems, function (id, item) {
             //
