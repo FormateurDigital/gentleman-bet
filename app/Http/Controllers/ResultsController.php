@@ -123,7 +123,6 @@ class ResultsController extends Controller
             $point = new Points();
             $total = 0;
             for ($i = 1; $i < 11; $i++) {
-                \Log::error("BET EXT: " . $bet->{'position' . $i} . " || I : $i");
                 $point->{'position' . $i} = $this->_calculate_position($result, $bet, $i);
                 $total += $point->{'position' . $i};
             }
@@ -159,6 +158,8 @@ class ResultsController extends Controller
             elseif ($bet->position2 == $result->position1)
                 if ($bet->position1 == $result->position2)
                     $point->udo = 30;
+            elseif ($bet->position1 == $result->position2 && $bet->position2 == $result->position3 && $bet->position3 == $result->position1)
+                $point->diumpo = 50;
             $point->total = $total + $point->pole + $point->podium + $point->diumpo + $point->duo + $point->udo + $point->vainq;
             $bet->point()->save($point);
         }
