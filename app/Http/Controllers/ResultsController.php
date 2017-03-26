@@ -98,19 +98,12 @@ class ResultsController extends Controller
         else {
             for ($i = 1; $i < 11 && $bet->{'position'.$i} != $result->{'position'.$position}; $i++);
 
+            if ($i > 10)
+                return 0;
+
             $abs = abs($position - $i);
 
-            if ($position == 10) {
-                \Log::error("RESULT - POSITION : $position || " . $result->{'position'.$position});
-                \Log::error("BET - POSITION : $i || " . $bet->{'position'.$i});
-                \Log::error("ABS : $abs");
-                \Log::error("POINTS : " . (20 - (2 * $abs)));
-            }
-
-            if ($abs > 9)
-                return 0;
-            else
-                return 20 - (2 * $abs);
+            return 20 - (2 * $abs);
         }
     }
 
@@ -122,10 +115,8 @@ class ResultsController extends Controller
         foreach ($bets as $bet) {
             $point = new Points();
             $total = 0;
-            for ($i = 1; $i < 11; $i++) {
+            for ($i = 1; $i < 11; $i++)
                 $point->{'position' . $i} = $this->_calculate_position($result, $bet, $i);
-                $total += $point->{'position' . $i};
-            }
             if ($result->pole == $bet->pole)
                 $point->pole = 20;
             else
@@ -155,14 +146,24 @@ class ResultsController extends Controller
                     if ($bet->position1 == $result->position2)
                         $point->diumpo = 50;
             }
-            elseif ($bet->position2 == $result->position1)
-                if ($bet->position1 == $result->position2)
-                    $point->udo = 30;
             elseif ($bet->position1 == $result->position2 && $bet->position2 == $result->position3 && $bet->position3 == $result->position1)
                 $point->diumpo = 50;
             elseif ($bet->position2 == $result->position1 && $bet->position3 == $result->position2 && $bet->position1 == $result->position3)
                 $point->diumpo = 50;
-            $point->total = $total + $point->pole + $point->podium + $point->diumpo + $point->duo + $point->udo + $point->vainq;
+            elseif ($bet->position2 == $result->position1)
+                if ($bet->position1 == $result->position2)
+                    $point->udo = 30;
+            $point->total = $point->pole + $point->podium + $point->diumpo + $point->duo + $point->udo + $point->vainq
+                            + $point->position1
+                            + $point->position2
+                            + $point->position3
+                            + $point->position4
+                            + $point->position5
+                            + $point->position6
+                            + $point->position7
+                            + $point->position8
+                            + $point->position9
+                            + $point->position10;
             $bet->point()->save($point);
         }
      }
@@ -179,6 +180,8 @@ class ResultsController extends Controller
             else
                 $bets = $gp->results;
         }
+
+
 
         $result = $result = $gp->results->where('type', 'result')->first();
 
