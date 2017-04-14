@@ -135,7 +135,7 @@
     </div>
 
     <script>
-        //TImer
+        //Timer
         var betTime = $('#betTime').val();
         $('#timer').countdown(betTime, function(event) {
             if ($('#timer').data('lastday')) {
@@ -146,9 +146,11 @@
         });
 
         //Block the already selected option
-        if ($("input[name='check']").val() == "true") {
-            elems = $("select").not("#pole");
-        }
+//        if ($("input[name='check']").val() == "true") {
+//            elems = $("select").not("#pole");
+//        }
+
+        elems = $("select").not("#pole");
 
         $.each(elems, function (id, item) {
             //
