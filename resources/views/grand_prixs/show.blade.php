@@ -49,6 +49,11 @@
                         {{$validation}}
                     </div>
                 @endif
+                @if($errors->any())
+                    <div class="alert alert-danger">
+                        {{$errors->first()}}
+                    </div>
+                @endif
                 {{ Form::open(['url' => action('ResultsController@bet', ['user' => \Auth::user()->id,'gp' => $gp->id]), 'method' => 'POST']) }}
                 {{ csrf_field() }}
                 <div class="row form-horizontal form-group{{ $errors->has('pole') ? ' has-error' : '' }}">
@@ -160,21 +165,13 @@
                 var position = item.id;
                 var option = $('option[value=' + item.value + ']').first();
                 $("#text-" + position).html("(" + option[0].dataset.stable + ") - " + option[0].dataset.name);
-
-                $.each(elems.not($(item)), function (index, elem) {
-                    $("select[name=" + elem.name + "] option[value=" + item.value + "]").attr("disabled", "disabled");
-                })
             }
         });
 
         //On change, block the selected value in other field, display name and clear previous value
         elems.change(function () {
-            $("option[value=" + $(this)[0].dataset.old + "]").removeAttr("disabled");
             $(this)[0].dataset.old = $(this).val();
             val = $(this).val();
-            $.each(elems.not($(this)), function (index, item){
-                $("select[name=" + item.name + "] option[value=" + val + "]").attr("disabled", "disabled");
-            });
             var position = $(this).attr("id");
             var option = $(this).find("option[value=" + $(this).val() + "]");
             $("#text-" + position).html("(" + option[0].dataset.stable +  ") - " + option[0].dataset.name);

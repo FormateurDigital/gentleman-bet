@@ -65,7 +65,9 @@ Route::group(['prefix' => 'stables'], function () {
 });
 
 Route::group(['prefix' => 'results'], function () {
-    Route::post('{gp}/results/{user}', 'ResultsController@bet');
+    Route::group(['middleware' => 'checkOrlando'], function () {
+        Route::post('{gp}/results/{user}', 'ResultsController@bet');
+    });
     Route::get('{gp}/results', 'ResultsController@show');
 });
 
