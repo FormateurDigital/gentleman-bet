@@ -22,7 +22,7 @@ class checkOrlando
         $count = array_count_values($positions);
         foreach ($count as $c) {
             if ($c > 1)
-                return redirect()->back()->withErrors("Vous ne pouvez pas choisir plusieures fois le meme courreur");
+                return redirect()->back()->withErrors("Vous ne pouvez pas choisir plusieurs fois le même pilote");
         }
 
         return $next($request);

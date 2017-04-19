@@ -31,7 +31,7 @@
                     @endif
                         <td>{{$loop->index + 1}}</td>
                         <td>{{$user->name}}</td>
-                        <td>{{$user->total}}</td>
+                            <td><strong>{{$user->total}}</strong></td>
                         @forelse($gps as $gp)
                             <td>{{($total = $gp->results->where('user_id', $user->id)->where('type', 'bet')->first()) !== null ? isset($total->point) ? $total->point->total : "None" : "None"}}</td>
                         @empty

@@ -147,12 +147,10 @@
 
         //Block the already selected option
 //        if ($("input[name='check']").val() == "true") {
-//            elems = $("select").not("#pole");
+//            $("select") = $("select").not("#pole");
 //        }
 
-        elems = $("select").not("#pole");
-
-        $.each(elems, function (id, item) {
+        $.each($("select"), function (id, item) {
             //
             $.each(item.children, function (index, child) {
                 if (item.dataset.selected == "")
@@ -171,7 +169,7 @@
         });
 
         //On change, block the selected value in other field, display name and clear previous value
-        elems.change(function () {
+        $("select").change(function () {
             $(this)[0].dataset.old = $(this).val();
             val = $(this).val();
             var position = $(this).attr("id");
