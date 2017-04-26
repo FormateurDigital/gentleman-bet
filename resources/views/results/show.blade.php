@@ -71,7 +71,7 @@
                                 @endif
                                         <td></td>
                                         <td></td>
-                                        <td>{{isset($bet->point) ? $bet->point->total : ""}}</td>{issetissetissetissetissetisset                                        <td>{{isset($bet->point) ? $bet->point->podium : ""}}</td>
+                                        <td>{{isset($bet->point) ? $bet->point->total : ""}}</td><td>{{isset($bet->point) ? $bet->point->podium : ""}}</td>
                                         <td>{{isset($bet->point) ? $bet->point->diumpo : ""}}</td>
                                         <td>{{isset($bet->point) ? $bet->point->duo : ""}}</td>
                                         <td>{{isset($bet->point) ? $bet->point->udo : ""}}</td>
