@@ -19,6 +19,10 @@ Route::get('/reglement', function () {
     return view('reglement');
 });
 
+Route::group(['prefix' => 'email'], function () {
+   Route::post('/send', 'EmailController@send');
+});
+
 Route::group(['prefix' => 'seasons'], function () {
     Route::group(['middleware' => 'checkRole'], function () {
         Route::get('/create', 'SeasonsController@create');
