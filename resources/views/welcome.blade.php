@@ -2,7 +2,7 @@
 
 @section('content')
     <body>
-                <div class="welcome-banner" style='background-image: url("img/welcome-banner.jpg"); background-color: #2C3E50; background-size:100%; background-repeat: no-repeat;'>
+                <div class="welcome-banner" style='background-image: url("img/welcome-banner2.jpg"); background-color: #2C3E50; background-size:100%; background-repeat: no-repeat;'>
                 <!--<img src="" alt="">-->
             </div>
             <div class="flex-center position-ref full-height">
