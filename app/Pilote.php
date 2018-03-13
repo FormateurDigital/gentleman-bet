@@ -21,7 +21,7 @@ class Pilote extends Model implements StaplerableInterface
 
     public function avatar () {
 
-        return "www" . $this->avatar->url();
+        return $this->avatar->url();
     }
 
     public function gp () {

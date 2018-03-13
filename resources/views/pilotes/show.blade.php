@@ -17,7 +17,7 @@
                         @forelse($pilotes as $pilote)
                             <tr>
                                 <td>
-                                    <img style="height: 30px" src="{{'/' . $pilote->avatar()}}">&nbsp;&nbsp;&nbsp;&nbsp;{{$pilote->name}}
+                                    {{$pilote->name}}
                                 </td>
                                 <td>
                                     {{$pilote->acronym}}
